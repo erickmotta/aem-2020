@@ -1,0 +1,11 @@
+Sample	Concentration	Hive	Treatment	Week
+C1	0	1	Control	4
+C2	0	2	Control	4
+C3	0	3	Control	4
+C4	0	4	Control	4
+C5	0	5	Control	4
+R1	1629.41484	6	0_1RS	4
+R2	1248.2631	7	0_1RS	4
+R3	816.64368	8	0_1RS	4
+R4	1396.12674	9	0_1RS	4
+R5	798.09306	10	0_1RS	4

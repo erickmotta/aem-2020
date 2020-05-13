@@ -1,0 +1,693 @@
+---
+title: "R Scripts for Figures 3-BCD and S4"
+author: "Erick Motta"
+---
+
+### Field experiment performed in site 1, Driftwood, TX, 2018 - Generalized linear mixed models
+
+# Load packages:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(lme4)
+library(interactions)
+library(car)
+library(effects)
+library(emmeans)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+library(gridExtra)
+```
+
+# For all bacteria:
+```{r}
+out_hive_dada2 <- read.table("tables/asv_tables/qiime2-DW-site1-2018-feature-table-absolute.txt", header = T)
+out_hive_dada2$Bee <- factor(out_hive_dada2$Bee)
+out_hive_dada2$Group <- factor(out_hive_dada2$Group)
+out_hive_dada2$Description <- factor(out_hive_dada2$Description)
+out_hive_dada2$Hive <- factor(out_hive_dada2$Hive)
+out_hive_dada2$Week <- factor(out_hive_dada2$Week)
+
+# linear_model <- glmer(Variable_effect ~ Fixed_effects + (1 | Nested_random_effects), family = poisson)
+
+# glmer, allow to fit a generalized linear mixed-effects model: these models include a link function that allows to predict response variables with non-Gaussian distributions.
+
+# if your outcome is discrete, i.e., you are dealing with counts (how many times something happen in given time interval), then the most common choice of the distribution to start with is Poisson distribution. The problem with Poisson distribution is that it is rather inflexible in the fact that it assumes that mean is equal to variance, if this assumption is not met, you may consider using quasi-Poisson family, or negative binomial distribution.
+
+# Model
+oh_tb_dada2.m1 <- glmer(Total_bact ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_tb_dada2.m1)
+
+# anova
+Anova(oh_tb_dada2.m1)
+
+# Description*Week effect
+oh_tb_dada2 <- allEffects(oh_tb_dada2.m1)
+print(oh_tb_dada2)
+
+# Create a data frame
+df_oh_tb_dada2 <- data.frame(oh_tb_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_tb_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_TB_dada2 <- ggplot(data = df_oh_tb_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(breaks = c(1e+7,2e+7,3e+7,4e+7,5e+7), trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("All bacteria") +
+  theme(plot.title = element_text(face = "plain", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Snodgrassella:
+```{r}
+# Model
+oh_snod_dada2.m1 <- glmer(Snodgrassella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_snod_dada2.m1)
+
+# anova
+Anova(oh_snod_dada2.m1)
+
+# Description*Week effect
+oh_snod_dada2 <- allEffects(oh_snod_dada2.m1)
+print(oh_snod_dada2)
+
+# Create a data frame
+df_oh_snod_dada2 <- data.frame(oh_snod_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_snod_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_SA_dada2 <- ggplot(data = df_oh_snod_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Snodgrassella alvi") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Bifidobacterium:
+```{r}
+# Model
+oh_bifido_dada2.m1 <- glmer(Bifidobacterium ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_bifido_dada2.m1)
+
+# anova
+Anova(oh_bifido_dada2.m1)
+
+# Description*Week effect
+oh_bifido_dada2 <- allEffects(oh_bifido_dada2.m1)
+print(oh_bifido_dada2)
+
+# Create a data frame
+df_oh_bifido_dada2 <- data.frame(oh_bifido_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_bifido_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_BI_dada2 <- ggplot(data = df_oh_bifido_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Bifidobacterium spp.") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-4:
+```{r}
+# Model
+oh_firm4_dada2.m1 <- glmer(Firm4 ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_firm4_dada2.m1)
+
+# anova
+Anova(oh_firm4_dada2.m1)
+
+# Description*Time effect
+oh_firm4_dada2 <- allEffects(oh_firm4_dada2.m1)
+print(oh_firm4_dada2)
+
+# Create a data frame
+df_oh_firm4_dada2 <- data.frame(oh_firm4_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_firm4_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_F4_dada2 <- ggplot(data = df_oh_firm4_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus Firm-4") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-4 - L. mellis
+```{r}
+# Model
+oh_mellis_dada2.m2 <- glmer(L_mellis ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+la <- getME(oh_mellis_dada2.m2, c("theta", "fixef"))
+oh_mellis_dada2.m1 <- update(oh_mellis_dada2.m2, start = la, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_mellis_dada2.m1)
+
+# anova
+Anova(oh_mellis_dada2.m1)
+
+# Description*Week effect
+oh_mellis_dada2 <- allEffects(oh_mellis_dada2.m1)
+print(oh_mellis_dada2)
+
+# Create a data frame
+df_oh_mellis_dada2 <- data.frame(oh_mellis_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_mellis_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_mellis_dada2 <- ggplot(data = df_oh_mellis_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus mellis") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-4 - L. mellifer
+```{r}
+# Model
+oh_mellifer_dada2.m2 <- glmer(L_mellifer ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+lm <- getME(oh_mellifer_dada2.m2, c("theta", "fixef"))
+oh_mellifer_dada2.m1 <- update(oh_mellifer_dada2.m2, start = lm, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_firm4_dada2.m1)
+
+# anova
+Anova(oh_mellifer_dada2.m1)
+
+# Description*Time effect
+oh_mellifer_dada2 <- allEffects(oh_mellifer_dada2.m1)
+print(oh_mellifer_dada2)
+
+# Create a data frame
+df_oh_mellifer_dada2 <- data.frame(oh_mellifer_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_mellifer_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_mellifer_dada2 <- ggplot(data = df_oh_mellifer_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus mellifer") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-5:
+```{r}
+# Model
+oh_firm5_dada2.m1 <- glmer(Firm5 ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_firm5_dada2.m1)
+
+# anova
+Anova(oh_firm5_dada2.m1)
+
+# Description*Week effect
+oh_firm5_dada2 <- allEffects(oh_firm5_dada2.m1)
+print(oh_firm5_dada2)
+
+# Create a data frame
+df_oh_firm5_dada2 <- data.frame(oh_firm5_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_firm5_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_F5_dada2 <- ggplot(data = df_oh_firm5_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") +
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus Firm-5") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-5 - Lactobacillus apis
+```{r Model}
+oh_lapis_dada2.m1 <- glmer(L_apis ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_lapis_dada2.m1)
+
+# anova
+Anova(oh_lapis_dada2.m1)
+
+# Description*Week effect
+oh_lapis_dada2 <- allEffects(oh_lapis_dada2.m1)
+print(oh_lapis_dada2)
+
+# Create a data frame
+df_oh_lapis_dada2 <- data.frame(oh_lapis_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_lapis_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_Lapis_dada2 <- ggplot(data = df_oh_lapis_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus apis") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-5 - Lactobacillus helsingborgensis
+```{r}
+# Model
+oh_Lhels_dada2.m1 <- glmer(L_helsingborgensis ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_Lhels_dada2.m1)
+
+# anova
+Anova(oh_Lhels_dada2.m1)
+
+# Description*Week effect
+oh_Lhels_dada2 <- allEffects(oh_Lhels_dada2.m1)
+print(oh_Lhels_dada2)
+
+# Create a data frame
+df_oh_Lhels_dada2 <- data.frame(oh_Lhels_dada2$`Description:Week`)
+
+# Statistical analysis
+emmeans(oh_Lhels_dada2.m1, pairwise~Description|Week)
+
+# Plot
+OH_Lhels_dada2 <- ggplot(data = df_oh_Lhels_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus helsingborgensis") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Lactobacillus Firm-5 - Lactobacillus kullabergensis
+```{r}
+# Model
+oh_Lkul_dada2.m1 <- glmer(L_kullabergensis ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_Lkul_dada2.m1)
+
+# anova
+Anova(oh_Lkul_dada2.m1)
+
+# Statistical analysis
+emmeans(oh_Lkul_dada2.m1, pairwise~Description|Week)
+```
+
+# For Lactobacillus Firm-5 - Lactobacillus melliventris
+```{r}
+# Model
+oh_Lmel_dada2.m2 <- glmer(L_melliventris ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+mell <- getME(oh_Lmel_dada2.m2, c("theta", "fixef"))
+oh_Lmel_dada2.m1 <- update(oh_Lmel_dada2.m2, start = mell, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_Lmel_dada2.m1)
+
+#anova
+Anova(oh_Lmel_dada2.m1)
+
+# Statistical analysis
+emmeans(oh_Lmel_dada2.m1, pairwise~Description|Week)
+```
+
+# For Gilliamella:
+```{r}
+# Model
+oh_gill_dada2.m1 <- glmer(Gilliamella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+summary(oh_gill_dada2.m1)
+
+# anova
+Anova(oh_gill_dada2.m1)
+
+# Description*Week effect
+oh_gill_dada2 <- allEffects(oh_gill_dada2.m1)
+print(oh_gill_dada2)
+
+# Statistical analysis
+emmeans(oh_gill_dada2.m1, pairwise~Description|Week)
+
+# Create a data frame
+df_oh_gill_dada2 <- data.frame(oh_gill_dada2$`Description:Week`)
+
+# Plot
+OH_GA_dada2 <- ggplot(data = df_oh_gill_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Gilliamella spp.") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Bartonella:
+```{r}
+# Model
+oh_bart_dada2.m1 <- glmer(Bartonella ~ Description*Week + (1 | Bee), family = poisson, data = out_hive_dada2)
+# Model failed to converge > decided to remove "Hive" as a random effect and increase # of iterations, based on this reference:
+# https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+ev <- getME(oh_bart_dada2.m1, c("theta", "fixef"))
+oh_bart_dada2.m2 <- update(oh_bart_dada2.m1, start = ev, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_bart_dada2.m2)
+
+# anova
+Anova(oh_bart_dada2.m2)
+
+# Description*Week effect
+oh_bart_dada2 <- allEffects(oh_bart_dada2.m2)
+print(oh_bart_dada2)
+
+# Statistical analysis
+emmeans(oh_bart_dada2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_oh_bart_dada2 <- data.frame(oh_bart_dada2$`Description:Week`)
+
+# Plot
+OH_BA_dada2 <- ggplot(data = df_oh_bart_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Bartonella apis") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Frischella:
+```{r}
+# Model
+oh_fris_dada2.m1 <- glmer(Frischella ~ Description*Week + (1 | Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: 
+# https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+em <- getME(oh_fris_dada2.m1, c("theta", "fixef"))
+oh_fris_dada2.m2 <- update(oh_fris_dada2.m1, start = em, control = glmerControl(optimizer = "bobyqa",
+                                                                            optCtrl = list(maxfun = 2e5)))
+summary(oh_fris_dada2.m2)
+
+#anova
+Anova(oh_fris_dada2.m2)
+
+# Description*Week effect
+oh_fris_dada2 <- allEffects(oh_fris_dada2.m2)
+print(oh_fris_dada2)
+
+# Statistical analysis
+emmeans(oh_fris_dada2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_oh_fris_dada2 <- data.frame(oh_fris_dada2$`Description:Week`)
+
+# Plot
+OH_FP_dada2 <- ggplot(data = df_oh_fris_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Frischella perrara") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For Commensalibacter:
+```{r}
+# Model
+oh_comens_dada2.m1 <- glmer(Commensalibacter ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+se <- getME(model_alpha21, c("theta", "fixef"))
+oh_comens_dada2.m2 <- update(oh_comens_dada2.m1, start = dm, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_comens_dada2.m2)
+
+# anova
+Anova(oh_comens_dada2.m2)
+
+# Description*Week effect
+oh_comens_dada2 <- allEffects(oh_comens_dada2.m2)
+print(oh_comens_dada2)
+
+# Statistical analysis
+emmeans(oh_comens_dada2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_oh_comens_dada2 <- data.frame(oh_comens_dada2$`Description:Week`)
+
+# Plot
+OH_CO_dada2 <- ggplot(data = df_oh_comens_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Commensalibacter spp.") +
+  theme(plot.title = element_text(face = "plain", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+#For Fructobacillus:
+```{r}
+# Model
+oh_fruct_dada2.m1 <- glmer(Fructobacillus ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+kl <- getME(oh_fruct_dada2.m1, c("theta", "fixef"))
+oh_fruct_dada2.m2 <- update(oh_fruct_dada2.m1, start = kl, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_fruct_dada2.m2)
+# anova
+Anova(oh_fruct_dada2.m2)
+
+# Description*Week effect
+oh_fruct_dada2 <- allEffects(oh_fruct_dada2.m2)
+print(oh_fruct_dada2)
+
+# Statistical analysis
+emmeans(oh_fruct_dada2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_oh_fruct_dada2 <- data.frame(oh_fruct_dada2$`Description:Week`)
+
+# Plot
+OH_FR_dada2 <- ggplot(data = df_oh_fruct_dada2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Fructobacillus spp.") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# For L_kunkeei:
+```{r}
+# Model
+oh_other_lact_dada2.m1 <- glmer(L_kunkeei ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hive_dada2)
+# Model failed and tried to increase the number of iterations, based on this reference: https://rstudio-pubs-static.s3.amazonaws.com/33653_57fc7b8e5d484c909b615d8633c01d51.html)
+za <- getME(oh_other_lact_dada2.m1, c("theta", "fixef"))
+oh_other_lact_dada2.m2 <- update(oh_other_lact_dada2.m1, start = za, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(oh_other_lact_dada2.m2)
+
+# anova
+Anova(oh_other_lact_dada2.m2)
+
+# Description*Week effect
+oh_other_lact_dada2 <- allEffects(oh_other_lact_dada2.m2)
+print(oh_other_lact_dada2)
+
+# Statistical analysis
+emmeans(oh_other_lact_dada2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_kunkeei <- data.frame(oh_other_lact_dada2$`Description:Week`)
+
+# Plot
+OH_LK <- ggplot(data = df_kunkeei,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 4, aes(shape = Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus kunkeei") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+### Plotting Figure 3-B,C,D and Figure S4
+```{r plot}
+### Figure 3-B-C-D:
+plot_grid(OH_TB_dada2, OH_SA_dada2, OH_BI_dada2, ncol = 3, labels = "AUTO")
+
+### Figure S4:
+plot_grid(OH_F4_dada2, OH_mellis_dada2, OH_mellifer_dada2, OH_F5_dada2, OH_Lapis_dada2, OH_Lhels_dada2, OH_GA_dada2, OH_BA_dada2, OH_FP_dada2, OH_CO_dada2, OH_FR_dada2, OH_LK, ncol = 3, labels = "AUTO")
+```

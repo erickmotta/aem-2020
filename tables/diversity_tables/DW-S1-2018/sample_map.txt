@@ -1,0 +1,751 @@
+#SampleID	I7index	I5index	Treatment	Condition	Week
+1SE3-1	TAAGGCGA	TCTTACGC	Syrup	Week0-C	Week0
+1SE3-2	TAAGGCGA	ATAGAGAG	Syrup	Week0-C	Week0
+1SE3-3	TAAGGCGA	AGAGGATA	Syrup	Week0-C	Week0
+1SE3-4	TAAGGCGA	TCTACTCT	Syrup	Week0-C	Week0
+1SE3-5	TAAGGCGA	CTCCTTAC	Syrup	Week0-C	Week0
+1SE3-6	TAAGGCGA	TATGCAGT	Syrup	Week0-C	Week0
+1SE3-7	TAAGGCGA	TACTCCTT	Syrup	Week0-C	Week0
+1SE3-8	TAAGGCGA	AGGCTTAG	Syrup	Week0-C	Week0
+1SE3-9	CGTACTAG	TCTTACGC	Syrup	Week0-C	Week0
+1SE3-10	CGTACTAG	ATAGAGAG	Syrup	Week0-C	Week0
+1SE3-11	CGTACTAG	AGAGGATA	Syrup	Week0-C	Week0
+1SE3-12	CGTACTAG	TCTACTCT	Syrup	Week0-C	Week0
+1SE3-13	CGTACTAG	CTCCTTAC	Syrup	Week0-C	Week0
+1SE3-14	CGTACTAG	TATGCAGT	Syrup	Week0-C	Week0
+1SE3-15	CGTACTAG	TACTCCTT	Syrup	Week0-C	Week0
+4SE3-1	AGGCAGAA	TCTTACGC	Syrup	Week0-C	Week0
+4SE3-2	AGGCAGAA	ATAGAGAG	Syrup	Week0-C	Week0
+4SE3-3	AGGCAGAA	AGAGGATA	Syrup	Week0-C	Week0
+4SE3-4	AGGCAGAA	TCTACTCT	Syrup	Week0-C	Week0
+4SE3-5	AGGCAGAA	CTCCTTAC	Syrup	Week0-C	Week0
+4SE3-6	AGGCAGAA	TATGCAGT	Syrup	Week0-C	Week0
+4SE3-7	AGGCAGAA	TACTCCTT	Syrup	Week0-C	Week0
+4SE3-8	AGGCAGAA	AGGCTTAG	Syrup	Week0-C	Week0
+4SE3-9	TCCTGAGC	TCTTACGC	Syrup	Week0-C	Week0
+4SE3-10	TCCTGAGC	ATAGAGAG	Syrup	Week0-C	Week0
+4SE3-11	TCCTGAGC	AGAGGATA	Syrup	Week0-C	Week0
+4SE3-12	TCCTGAGC	TCTACTCT	Syrup	Week0-C	Week0
+4SE3-13	TCCTGAGC	CTCCTTAC	Syrup	Week0-C	Week0
+4SE3-14	TCCTGAGC	TATGCAGT	Syrup	Week0-C	Week0
+4SE3-15	TCCTGAGC	TACTCCTT	Syrup	Week0-C	Week0
+5SE3-1	GGACTCCT	TCTTACGC	Syrup	Week0-C	Week0
+5SE3-2	GGACTCCT	ATAGAGAG	Syrup	Week0-C	Week0
+5SE3-3	GGACTCCT	AGAGGATA	Syrup	Week0-C	Week0
+5SE3-4	GGACTCCT	TCTACTCT	Syrup	Week0-C	Week0
+5SE3-5	GGACTCCT	CTCCTTAC	Syrup	Week0-C	Week0
+5SE3-6	GGACTCCT	TATGCAGT	Syrup	Week0-C	Week0
+5SE3-7	GGACTCCT	TACTCCTT	Syrup	Week0-C	Week0
+5SE3-8	GGACTCCT	AGGCTTAG	Syrup	Week0-C	Week0
+5SE3-9	TAGGCATG	TCTTACGC	Syrup	Week0-C	Week0
+5SE3-10	TAGGCATG	ATAGAGAG	Syrup	Week0-C	Week0
+5SE3-11	TAGGCATG	AGAGGATA	Syrup	Week0-C	Week0
+5SE3-12	TAGGCATG	TCTACTCT	Syrup	Week0-C	Week0
+5SE3-13	TAGGCATG	CTCCTTAC	Syrup	Week0-C	Week0
+5SE3-14	TAGGCATG	TATGCAGT	Syrup	Week0-C	Week0
+5SE3-15	TAGGCATG	TACTCCTT	Syrup	Week0-C	Week0
+8SE3-1	CTCTCTAC	TCTTACGC	Syrup	Week0-C	Week0
+8SE3-2	CTCTCTAC	ATAGAGAG	Syrup	Week0-C	Week0
+8SE3-3	CTCTCTAC	AGAGGATA	Syrup	Week0-C	Week0
+8SE3-4	CTCTCTAC	TCTACTCT	Syrup	Week0-C	Week0
+8SE3-5	CTCTCTAC	CTCCTTAC	Syrup	Week0-C	Week0
+8SE3-6	CTCTCTAC	TATGCAGT	Syrup	Week0-C	Week0
+8SE3-7	CTCTCTAC	TACTCCTT	Syrup	Week0-C	Week0
+8SE3-8	CTCTCTAC	AGGCTTAG	Syrup	Week0-C	Week0
+8SE3-9	CAGAGAGG	TCTTACGC	Syrup	Week0-C	Week0
+8SE3-10	CAGAGAGG	ATAGAGAG	Syrup	Week0-C	Week0
+8SE3-11	CAGAGAGG	AGAGGATA	Syrup	Week0-C	Week0
+8SE3-12	CAGAGAGG	TCTACTCT	Syrup	Week0-C	Week0
+8SE3-13	CAGAGAGG	CTCCTTAC	Syrup	Week0-C	Week0
+8SE3-14	CAGAGAGG	TATGCAGT	Syrup	Week0-C	Week0
+8SE3-15	CAGAGAGG	TACTCCTT	Syrup	Week0-C	Week0
+30BW3-1	GCTACGCT	TCTTACGC	Syrup	Week0-C	Week0
+30BW3-2	GCTACGCT	ATAGAGAG	Syrup	Week0-C	Week0
+30BW3-3	GCTACGCT	AGAGGATA	Syrup	Week0-C	Week0
+30BW3-4	GCTACGCT	TCTACTCT	Syrup	Week0-C	Week0
+30BW3-5	GCTACGCT	CTCCTTAC	Syrup	Week0-C	Week0
+30BW3-6	GCTACGCT	TATGCAGT	Syrup	Week0-C	Week0
+30BW3-7	GCTACGCT	TACTCCTT	Syrup	Week0-C	Week0
+30BW3-8	GCTACGCT	AGGCTTAG	Syrup	Week0-C	Week0
+30BW3-9	CGAGGCTG	TCTTACGC	Syrup	Week0-C	Week0
+30BW3-10	CGAGGCTG	ATAGAGAG	Syrup	Week0-C	Week0
+30BW3-11	CGAGGCTG	AGAGGATA	Syrup	Week0-C	Week0
+30BW3-12	CGAGGCTG	TCTACTCT	Syrup	Week0-C	Week0
+30BW3-13	CGAGGCTG	CTCCTTAC	Syrup	Week0-C	Week0
+30BW3-14	CGAGGCTG	TATGCAGT	Syrup	Week0-C	Week0
+30BW3-15	CGAGGCTG	TACTCCTT	Syrup	Week0-C	Week0
+9SE3-1	AAGAGGCA	TCTTACGC	0.1% Roundup	Week0-R	Week0
+9SE3-2	AAGAGGCA	ATAGAGAG	0.1% Roundup	Week0-R	Week0
+9SE3-3	AAGAGGCA	AGAGGATA	0.1% Roundup	Week0-R	Week0
+9SE3-4	AAGAGGCA	TCTACTCT	0.1% Roundup	Week0-R	Week0
+9SE3-5	AAGAGGCA	CTCCTTAC	0.1% Roundup	Week0-R	Week0
+9SE3-6	AAGAGGCA	TATGCAGT	0.1% Roundup	Week0-R	Week0
+9SE3-7	AAGAGGCA	TACTCCTT	0.1% Roundup	Week0-R	Week0
+9SE3-8	AAGAGGCA	AGGCTTAG	0.1% Roundup	Week0-R	Week0
+9SE3-9	GTAGAGGA	TCTTACGC	0.1% Roundup	Week0-R	Week0
+9SE3-10	GTAGAGGA	ATAGAGAG	0.1% Roundup	Week0-R	Week0
+9SE3-11	GTAGAGGA	AGAGGATA	0.1% Roundup	Week0-R	Week0
+9SE3-12	GTAGAGGA	TCTACTCT	0.1% Roundup	Week0-R	Week0
+9SE3-13	GTAGAGGA	CTCCTTAC	0.1% Roundup	Week0-R	Week0
+9SE3-14	GTAGAGGA	TATGCAGT	0.1% Roundup	Week0-R	Week0
+9SE3-15	GTAGAGGA	TACTCCTT	0.1% Roundup	Week0-R	Week0
+10SE3-1	GCTCATGA	GCGATCTA	0.1% Roundup	Week0-R	Week0
+10SE3-2	GCTCATGA	ATTAGACG	0.1% Roundup	Week0-R	Week0
+10SE3-3	GCTCATGA	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+10SE3-4	GCTCATGA	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+10SE3-5	GCTCATGA	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+10SE3-6	GCTCATGA	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+10SE3-7	GCTCATGA	CTTAATAG	0.1% Roundup	Week0-R	Week0
+10SE3-8	GCTCATGA	ATAGCCTT	0.1% Roundup	Week0-R	Week0
+10SE3-9	ATCTCAGG	GCGATCTA	0.1% Roundup	Week0-R	Week0
+10SE3-10	ATCTCAGG	ATTAGACG	0.1% Roundup	Week0-R	Week0
+10SE3-11	ATCTCAGG	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+10SE3-12	ATCTCAGG	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+10SE3-13	ATCTCAGG	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+10SE3-14	ATCTCAGG	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+10SE3-15	ATCTCAGG	CTTAATAG	0.1% Roundup	Week0-R	Week0
+26BW3-1	ACTCGCTA	GCGATCTA	0.1% Roundup	Week0-R	Week0
+26BW3-2	ACTCGCTA	ATTAGACG	0.1% Roundup	Week0-R	Week0
+26BW3-3	ACTCGCTA	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+26BW3-4	ACTCGCTA	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+26BW3-5	ACTCGCTA	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+26BW3-6	ACTCGCTA	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+26BW3-7	ACTCGCTA	CTTAATAG	0.1% Roundup	Week0-R	Week0
+26BW3-8	ACTCGCTA	ATAGCCTT	0.1% Roundup	Week0-R	Week0
+26BW3-9	GGAGCTAC	GCGATCTA	0.1% Roundup	Week0-R	Week0
+26BW3-10	GGAGCTAC	ATTAGACG	0.1% Roundup	Week0-R	Week0
+26BW3-11	GGAGCTAC	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+26BW3-12	GGAGCTAC	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+26BW3-13	GGAGCTAC	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+26BW3-14	GGAGCTAC	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+26BW3-15	GGAGCTAC	CTTAATAG	0.1% Roundup	Week0-R	Week0
+27BW3-1	GCGTAGTA	GCGATCTA	0.1% Roundup	Week0-R	Week0
+27BW3-2	GCGTAGTA	ATTAGACG	0.1% Roundup	Week0-R	Week0
+27BW3-3	GCGTAGTA	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+27BW3-4	GCGTAGTA	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+27BW3-5	GCGTAGTA	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+27BW3-6	GCGTAGTA	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+27BW3-7	GCGTAGTA	CTTAATAG	0.1% Roundup	Week0-R	Week0
+27BW3-8	GCGTAGTA	ATAGCCTT	0.1% Roundup	Week0-R	Week0
+27BW3-9	CGGAGCCT	GCGATCTA	0.1% Roundup	Week0-R	Week0
+27BW3-10	CGGAGCCT	ATTAGACG	0.1% Roundup	Week0-R	Week0
+27BW3-11	CGGAGCCT	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+27BW3-12	CGGAGCCT	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+27BW3-13	CGGAGCCT	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+27BW3-14	CGGAGCCT	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+27BW3-15	CGGAGCCT	CTTAATAG	0.1% Roundup	Week0-R	Week0
+28BW3-1	TACGCTGC	GCGATCTA	0.1% Roundup	Week0-R	Week0
+28BW3-2	TACGCTGC	ATTAGACG	0.1% Roundup	Week0-R	Week0
+28BW3-3	TACGCTGC	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+28BW3-4	TACGCTGC	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+28BW3-5	TACGCTGC	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+28BW3-6	TACGCTGC	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+28BW3-7	TACGCTGC	CTTAATAG	0.1% Roundup	Week0-R	Week0
+28BW3-8	TACGCTGC	ATAGCCTT	0.1% Roundup	Week0-R	Week0
+28BW3-9	ATGCGCAG	GCGATCTA	0.1% Roundup	Week0-R	Week0
+28BW3-10	ATGCGCAG	ATTAGACG	0.1% Roundup	Week0-R	Week0
+28BW3-11	ATGCGCAG	CGGAGAGA	0.1% Roundup	Week0-R	Week0
+28BW3-12	ATGCGCAG	CTAGTCGA	0.1% Roundup	Week0-R	Week0
+28BW3-13	ATGCGCAG	AGCTAGAA	0.1% Roundup	Week0-R	Week0
+28BW3-14	ATGCGCAG	ACTCTAGG	0.1% Roundup	Week0-R	Week0
+28BW3-15	ATGCGCAG	CTTAATAG	0.1% Roundup	Week0-R	Week0
+1SE4-1			Syrup	Week1-C	Week1
+1SE4-2			Syrup	Week1-C	Week1
+1SE4-3			Syrup	Week1-C	Week1
+1SE4-4			Syrup	Week1-C	Week1
+1SE4-5			Syrup	Week1-C	Week1
+1SE4-6			Syrup	Week1-C	Week1
+1SE4-7			Syrup	Week1-C	Week1
+1SE4-8			Syrup	Week1-C	Week1
+1SE4-9			Syrup	Week1-C	Week1
+1SE4-10			Syrup	Week1-C	Week1
+1SE4-11			Syrup	Week1-C	Week1
+1SE4-12			Syrup	Week1-C	Week1
+1SE4-13			Syrup	Week1-C	Week1
+1SE4-14			Syrup	Week1-C	Week1
+1SE4-15			Syrup	Week1-C	Week1
+4SE4-1			Syrup	Week1-C	Week1
+4SE4-2			Syrup	Week1-C	Week1
+4SE4-3			Syrup	Week1-C	Week1
+4SE4-4			Syrup	Week1-C	Week1
+4SE4-5			Syrup	Week1-C	Week1
+4SE4-6			Syrup	Week1-C	Week1
+4SE4-7			Syrup	Week1-C	Week1
+4SE4-8			Syrup	Week1-C	Week1
+4SE4-9			Syrup	Week1-C	Week1
+4SE4-10			Syrup	Week1-C	Week1
+4SE4-11			Syrup	Week1-C	Week1
+4SE4-12			Syrup	Week1-C	Week1
+4SE4-13			Syrup	Week1-C	Week1
+4SE4-14			Syrup	Week1-C	Week1
+4SE4-15			Syrup	Week1-C	Week1
+5SE4-1			Syrup	Week1-C	Week1
+5SE4-2			Syrup	Week1-C	Week1
+5SE4-3			Syrup	Week1-C	Week1
+5SE4-4			Syrup	Week1-C	Week1
+5SE4-5			Syrup	Week1-C	Week1
+5SE4-6			Syrup	Week1-C	Week1
+5SE4-7			Syrup	Week1-C	Week1
+5SE4-8			Syrup	Week1-C	Week1
+5SE4-9			Syrup	Week1-C	Week1
+5SE4-10			Syrup	Week1-C	Week1
+5SE4-11			Syrup	Week1-C	Week1
+5SE4-12			Syrup	Week1-C	Week1
+5SE4-13			Syrup	Week1-C	Week1
+5SE4-14			Syrup	Week1-C	Week1
+5SE4-15			Syrup	Week1-C	Week1
+8SE4-1			Syrup	Week1-C	Week1
+8SE4-2			Syrup	Week1-C	Week1
+8SE4-3			Syrup	Week1-C	Week1
+8SE4-4			Syrup	Week1-C	Week1
+8SE4-5			Syrup	Week1-C	Week1
+8SE4-6			Syrup	Week1-C	Week1
+8SE4-7			Syrup	Week1-C	Week1
+8SE4-8			Syrup	Week1-C	Week1
+8SE4-9			Syrup	Week1-C	Week1
+8SE4-10			Syrup	Week1-C	Week1
+8SE4-11			Syrup	Week1-C	Week1
+8SE4-12			Syrup	Week1-C	Week1
+8SE4-13			Syrup	Week1-C	Week1
+8SE4-14			Syrup	Week1-C	Week1
+8SE4-15			Syrup	Week1-C	Week1
+30BW4-1			Syrup	Week1-C	Week1
+30BW4-2			Syrup	Week1-C	Week1
+30BW4-3			Syrup	Week1-C	Week1
+30BW4-4			Syrup	Week1-C	Week1
+30BW4-5			Syrup	Week1-C	Week1
+30BW4-6			Syrup	Week1-C	Week1
+30BW4-7			Syrup	Week1-C	Week1
+30BW4-8			Syrup	Week1-C	Week1
+30BW4-9			Syrup	Week1-C	Week1
+30BW4-10			Syrup	Week1-C	Week1
+30BW4-11			Syrup	Week1-C	Week1
+30BW4-12			Syrup	Week1-C	Week1
+30BW4-13			Syrup	Week1-C	Week1
+30BW4-14			Syrup	Week1-C	Week1
+30BW4-15			Syrup	Week1-C	Week1
+9SE4-1			0.1% Roundup	Week1-R	Week1
+9SE4-2			0.1% Roundup	Week1-R	Week1
+9SE4-3			0.1% Roundup	Week1-R	Week1
+9SE4-4			0.1% Roundup	Week1-R	Week1
+9SE4-5			0.1% Roundup	Week1-R	Week1
+9SE4-6			0.1% Roundup	Week1-R	Week1
+9SE4-7			0.1% Roundup	Week1-R	Week1
+9SE4-8			0.1% Roundup	Week1-R	Week1
+9SE4-9			0.1% Roundup	Week1-R	Week1
+9SE4-10			0.1% Roundup	Week1-R	Week1
+9SE4-11			0.1% Roundup	Week1-R	Week1
+9SE4-12			0.1% Roundup	Week1-R	Week1
+9SE4-13			0.1% Roundup	Week1-R	Week1
+9SE4-14			0.1% Roundup	Week1-R	Week1
+9SE4-15			0.1% Roundup	Week1-R	Week1
+10SE4-1			0.1% Roundup	Week1-R	Week1
+10SE4-2			0.1% Roundup	Week1-R	Week1
+10SE4-3			0.1% Roundup	Week1-R	Week1
+10SE4-4			0.1% Roundup	Week1-R	Week1
+10SE4-5			0.1% Roundup	Week1-R	Week1
+10SE4-6			0.1% Roundup	Week1-R	Week1
+10SE4-7			0.1% Roundup	Week1-R	Week1
+10SE4-8			0.1% Roundup	Week1-R	Week1
+10SE4-9			0.1% Roundup	Week1-R	Week1
+10SE4-10			0.1% Roundup	Week1-R	Week1
+10SE4-11			0.1% Roundup	Week1-R	Week1
+10SE4-12			0.1% Roundup	Week1-R	Week1
+10SE4-13			0.1% Roundup	Week1-R	Week1
+10SE4-14			0.1% Roundup	Week1-R	Week1
+10SE4-15			0.1% Roundup	Week1-R	Week1
+26BW4-1			0.1% Roundup	Week1-R	Week1
+26BW4-2			0.1% Roundup	Week1-R	Week1
+26BW4-3			0.1% Roundup	Week1-R	Week1
+26BW4-4			0.1% Roundup	Week1-R	Week1
+26BW4-5			0.1% Roundup	Week1-R	Week1
+26BW4-6			0.1% Roundup	Week1-R	Week1
+26BW4-7			0.1% Roundup	Week1-R	Week1
+26BW4-8			0.1% Roundup	Week1-R	Week1
+26BW4-9			0.1% Roundup	Week1-R	Week1
+26BW4-10			0.1% Roundup	Week1-R	Week1
+26BW4-11			0.1% Roundup	Week1-R	Week1
+26BW4-12			0.1% Roundup	Week1-R	Week1
+26BW4-13			0.1% Roundup	Week1-R	Week1
+26BW4-14			0.1% Roundup	Week1-R	Week1
+26BW4-15			0.1% Roundup	Week1-R	Week1
+27BW4-1			0.1% Roundup	Week1-R	Week1
+27BW4-2			0.1% Roundup	Week1-R	Week1
+27BW4-3			0.1% Roundup	Week1-R	Week1
+27BW4-4			0.1% Roundup	Week1-R	Week1
+27BW4-5			0.1% Roundup	Week1-R	Week1
+27BW4-6			0.1% Roundup	Week1-R	Week1
+27BW4-7			0.1% Roundup	Week1-R	Week1
+27BW4-8			0.1% Roundup	Week1-R	Week1
+27BW4-9			0.1% Roundup	Week1-R	Week1
+27BW4-10			0.1% Roundup	Week1-R	Week1
+27BW4-11			0.1% Roundup	Week1-R	Week1
+27BW4-12			0.1% Roundup	Week1-R	Week1
+27BW4-13			0.1% Roundup	Week1-R	Week1
+27BW4-14			0.1% Roundup	Week1-R	Week1
+27BW4-15			0.1% Roundup	Week1-R	Week1
+28BW4-1			0.1% Roundup	Week1-R	Week1
+28BW4-2			0.1% Roundup	Week1-R	Week1
+28BW4-3			0.1% Roundup	Week1-R	Week1
+28BW4-4			0.1% Roundup	Week1-R	Week1
+28BW4-5			0.1% Roundup	Week1-R	Week1
+28BW4-6			0.1% Roundup	Week1-R	Week1
+28BW4-7			0.1% Roundup	Week1-R	Week1
+28BW4-8			0.1% Roundup	Week1-R	Week1
+28BW4-9			0.1% Roundup	Week1-R	Week1
+28BW4-10			0.1% Roundup	Week1-R	Week1
+28BW4-11			0.1% Roundup	Week1-R	Week1
+28BW4-12			0.1% Roundup	Week1-R	Week1
+28BW4-13			0.1% Roundup	Week1-R	Week1
+28BW4-14			0.1% Roundup	Week1-R	Week1
+28BW4-15			0.1% Roundup	Week1-R	Week1
+1SE6-1			Syrup	Week3-C	Week3
+1SE6-2			Syrup	Week3-C	Week3
+1SE6-3			Syrup	Week3-C	Week3
+1SE6-4			Syrup	Week3-C	Week3
+1SE6-5			Syrup	Week3-C	Week3
+1SE6-6			Syrup	Week3-C	Week3
+1SE6-7			Syrup	Week3-C	Week3
+1SE6-8			Syrup	Week3-C	Week3
+1SE6-9			Syrup	Week3-C	Week3
+1SE6-10			Syrup	Week3-C	Week3
+1SE6-11			Syrup	Week3-C	Week3
+1SE6-12			Syrup	Week3-C	Week3
+1SE6-13			Syrup	Week3-C	Week3
+1SE6-14			Syrup	Week3-C	Week3
+1SE6-15			Syrup	Week3-C	Week3
+4SE6-1			Syrup	Week3-C	Week3
+4SE6-2			Syrup	Week3-C	Week3
+4SE6-3			Syrup	Week3-C	Week3
+4SE6-4			Syrup	Week3-C	Week3
+4SE6-5			Syrup	Week3-C	Week3
+4SE6-6			Syrup	Week3-C	Week3
+4SE6-7			Syrup	Week3-C	Week3
+4SE6-8			Syrup	Week3-C	Week3
+4SE6-9			Syrup	Week3-C	Week3
+4SE6-10			Syrup	Week3-C	Week3
+4SE6-11			Syrup	Week3-C	Week3
+4SE6-12			Syrup	Week3-C	Week3
+4SE6-13			Syrup	Week3-C	Week3
+4SE6-14			Syrup	Week3-C	Week3
+4SE6-15			Syrup	Week3-C	Week3
+5SE6-1			Syrup	Week3-C	Week3
+5SE6-2			Syrup	Week3-C	Week3
+5SE6-3			Syrup	Week3-C	Week3
+5SE6-4			Syrup	Week3-C	Week3
+5SE6-5			Syrup	Week3-C	Week3
+5SE6-6			Syrup	Week3-C	Week3
+5SE6-7			Syrup	Week3-C	Week3
+5SE6-8			Syrup	Week3-C	Week3
+5SE6-9			Syrup	Week3-C	Week3
+5SE6-10			Syrup	Week3-C	Week3
+5SE6-11			Syrup	Week3-C	Week3
+5SE6-12			Syrup	Week3-C	Week3
+5SE6-13			Syrup	Week3-C	Week3
+5SE6-14			Syrup	Week3-C	Week3
+5SE6-15			Syrup	Week3-C	Week3
+8SE6-1			Syrup	Week3-C	Week3
+8SE6-2			Syrup	Week3-C	Week3
+8SE6-3			Syrup	Week3-C	Week3
+8SE6-4			Syrup	Week3-C	Week3
+8SE6-5			Syrup	Week3-C	Week3
+8SE6-6			Syrup	Week3-C	Week3
+8SE6-7			Syrup	Week3-C	Week3
+8SE6-8			Syrup	Week3-C	Week3
+8SE6-9			Syrup	Week3-C	Week3
+8SE6-10			Syrup	Week3-C	Week3
+8SE6-11			Syrup	Week3-C	Week3
+8SE6-12			Syrup	Week3-C	Week3
+8SE6-13			Syrup	Week3-C	Week3
+8SE6-14			Syrup	Week3-C	Week3
+8SE6-15			Syrup	Week3-C	Week3
+30BW6-1			Syrup	Week3-C	Week3
+30BW6-2			Syrup	Week3-C	Week3
+30BW6-3			Syrup	Week3-C	Week3
+30BW6-4			Syrup	Week3-C	Week3
+30BW6-5			Syrup	Week3-C	Week3
+30BW6-6			Syrup	Week3-C	Week3
+30BW6-7			Syrup	Week3-C	Week3
+30BW6-8			Syrup	Week3-C	Week3
+30BW6-9			Syrup	Week3-C	Week3
+30BW6-10			Syrup	Week3-C	Week3
+30BW6-11			Syrup	Week3-C	Week3
+30BW6-12			Syrup	Week3-C	Week3
+30BW6-13			Syrup	Week3-C	Week3
+30BW6-14			Syrup	Week3-C	Week3
+30BW6-15			Syrup	Week3-C	Week3
+9SE6-1			0.1% Roundup	Week3-R	Week3
+9SE6-2			0.1% Roundup	Week3-R	Week3
+9SE6-3			0.1% Roundup	Week3-R	Week3
+9SE6-4			0.1% Roundup	Week3-R	Week3
+9SE6-5			0.1% Roundup	Week3-R	Week3
+9SE6-6			0.1% Roundup	Week3-R	Week3
+9SE6-7			0.1% Roundup	Week3-R	Week3
+9SE6-8			0.1% Roundup	Week3-R	Week3
+9SE6-9			0.1% Roundup	Week3-R	Week3
+9SE6-10			0.1% Roundup	Week3-R	Week3
+9SE6-11			0.1% Roundup	Week3-R	Week3
+9SE6-12			0.1% Roundup	Week3-R	Week3
+9SE6-13			0.1% Roundup	Week3-R	Week3
+9SE6-14			0.1% Roundup	Week3-R	Week3
+9SE6-15			0.1% Roundup	Week3-R	Week3
+10SE6-1			0.1% Roundup	Week3-R	Week3
+10SE6-2			0.1% Roundup	Week3-R	Week3
+10SE6-3			0.1% Roundup	Week3-R	Week3
+10SE6-4			0.1% Roundup	Week3-R	Week3
+10SE6-5			0.1% Roundup	Week3-R	Week3
+10SE6-6			0.1% Roundup	Week3-R	Week3
+10SE6-7			0.1% Roundup	Week3-R	Week3
+10SE6-8			0.1% Roundup	Week3-R	Week3
+10SE6-9			0.1% Roundup	Week3-R	Week3
+10SE6-10			0.1% Roundup	Week3-R	Week3
+10SE6-11			0.1% Roundup	Week3-R	Week3
+10SE6-12			0.1% Roundup	Week3-R	Week3
+10SE6-13			0.1% Roundup	Week3-R	Week3
+10SE6-14			0.1% Roundup	Week3-R	Week3
+10SE6-15			0.1% Roundup	Week3-R	Week3
+26BW6-1			0.1% Roundup	Week3-R	Week3
+26BW6-2			0.1% Roundup	Week3-R	Week3
+26BW6-3			0.1% Roundup	Week3-R	Week3
+26BW6-4			0.1% Roundup	Week3-R	Week3
+26BW6-5			0.1% Roundup	Week3-R	Week3
+26BW6-6			0.1% Roundup	Week3-R	Week3
+26BW6-7			0.1% Roundup	Week3-R	Week3
+26BW6-8			0.1% Roundup	Week3-R	Week3
+26BW6-9			0.1% Roundup	Week3-R	Week3
+26BW6-10			0.1% Roundup	Week3-R	Week3
+26BW6-11			0.1% Roundup	Week3-R	Week3
+26BW6-12			0.1% Roundup	Week3-R	Week3
+26BW6-13			0.1% Roundup	Week3-R	Week3
+26BW6-14			0.1% Roundup	Week3-R	Week3
+26BW6-15			0.1% Roundup	Week3-R	Week3
+27BW6-1			0.1% Roundup	Week3-R	Week3
+27BW6-2			0.1% Roundup	Week3-R	Week3
+27BW6-3			0.1% Roundup	Week3-R	Week3
+27BW6-4			0.1% Roundup	Week3-R	Week3
+27BW6-5			0.1% Roundup	Week3-R	Week3
+27BW6-6			0.1% Roundup	Week3-R	Week3
+27BW6-7			0.1% Roundup	Week3-R	Week3
+27BW6-8			0.1% Roundup	Week3-R	Week3
+27BW6-9			0.1% Roundup	Week3-R	Week3
+27BW6-10			0.1% Roundup	Week3-R	Week3
+27BW6-11			0.1% Roundup	Week3-R	Week3
+27BW6-12			0.1% Roundup	Week3-R	Week3
+27BW6-13			0.1% Roundup	Week3-R	Week3
+27BW6-14			0.1% Roundup	Week3-R	Week3
+27BW6-15			0.1% Roundup	Week3-R	Week3
+28BW6-1			0.1% Roundup	Week3-R	Week3
+28BW6-2			0.1% Roundup	Week3-R	Week3
+28BW6-3			0.1% Roundup	Week3-R	Week3
+28BW6-4			0.1% Roundup	Week3-R	Week3
+28BW6-5			0.1% Roundup	Week3-R	Week3
+28BW6-6			0.1% Roundup	Week3-R	Week3
+28BW6-7			0.1% Roundup	Week3-R	Week3
+28BW6-8			0.1% Roundup	Week3-R	Week3
+28BW6-9			0.1% Roundup	Week3-R	Week3
+28BW6-10			0.1% Roundup	Week3-R	Week3
+28BW6-11			0.1% Roundup	Week3-R	Week3
+28BW6-12			0.1% Roundup	Week3-R	Week3
+28BW6-13			0.1% Roundup	Week3-R	Week3
+28BW6-14			0.1% Roundup	Week3-R	Week3
+28BW6-15			0.1% Roundup	Week3-R	Week3
+1SE7-1			Syrup	Week4-C	Week4
+1SE7-2			Syrup	Week4-C	Week4
+1SE7-3			Syrup	Week4-C	Week4
+1SE7-4			Syrup	Week4-C	Week4
+1SE7-5			Syrup	Week4-C	Week4
+1SE7-6			Syrup	Week4-C	Week4
+1SE7-7			Syrup	Week4-C	Week4
+1SE7-8			Syrup	Week4-C	Week4
+1SE7-9			Syrup	Week4-C	Week4
+1SE7-10			Syrup	Week4-C	Week4
+1SE7-11			Syrup	Week4-C	Week4
+1SE7-12			Syrup	Week4-C	Week4
+1SE7-13			Syrup	Week4-C	Week4
+1SE7-14			Syrup	Week4-C	Week4
+1SE7-15			Syrup	Week4-C	Week4
+4SE7-1			Syrup	Week4-C	Week4
+4SE7-2			Syrup	Week4-C	Week4
+4SE7-3			Syrup	Week4-C	Week4
+4SE7-4			Syrup	Week4-C	Week4
+4SE7-5			Syrup	Week4-C	Week4
+4SE7-6			Syrup	Week4-C	Week4
+4SE7-7			Syrup	Week4-C	Week4
+4SE7-8			Syrup	Week4-C	Week4
+4SE7-9			Syrup	Week4-C	Week4
+4SE7-10			Syrup	Week4-C	Week4
+4SE7-11			Syrup	Week4-C	Week4
+4SE7-12			Syrup	Week4-C	Week4
+4SE7-13			Syrup	Week4-C	Week4
+4SE7-14			Syrup	Week4-C	Week4
+4SE7-15			Syrup	Week4-C	Week4
+5SE7-1			Syrup	Week4-C	Week4
+5SE7-2			Syrup	Week4-C	Week4
+5SE7-3			Syrup	Week4-C	Week4
+5SE7-4			Syrup	Week4-C	Week4
+5SE7-5			Syrup	Week4-C	Week4
+5SE7-6			Syrup	Week4-C	Week4
+5SE7-7			Syrup	Week4-C	Week4
+5SE7-8			Syrup	Week4-C	Week4
+5SE7-9			Syrup	Week4-C	Week4
+5SE7-10			Syrup	Week4-C	Week4
+5SE7-11			Syrup	Week4-C	Week4
+5SE7-12			Syrup	Week4-C	Week4
+5SE7-13			Syrup	Week4-C	Week4
+5SE7-14			Syrup	Week4-C	Week4
+5SE7-15			Syrup	Week4-C	Week4
+8SE7-1			Syrup	Week4-C	Week4
+8SE7-2			Syrup	Week4-C	Week4
+8SE7-3			Syrup	Week4-C	Week4
+8SE7-4			Syrup	Week4-C	Week4
+8SE7-5			Syrup	Week4-C	Week4
+8SE7-6			Syrup	Week4-C	Week4
+8SE7-7			Syrup	Week4-C	Week4
+8SE7-8			Syrup	Week4-C	Week4
+8SE7-9			Syrup	Week4-C	Week4
+8SE7-10			Syrup	Week4-C	Week4
+8SE7-11			Syrup	Week4-C	Week4
+8SE7-12			Syrup	Week4-C	Week4
+8SE7-13			Syrup	Week4-C	Week4
+8SE7-14			Syrup	Week4-C	Week4
+8SE7-15			Syrup	Week4-C	Week4
+30BW7-1			Syrup	Week4-C	Week4
+30BW7-2			Syrup	Week4-C	Week4
+30BW7-3			Syrup	Week4-C	Week4
+30BW7-4			Syrup	Week4-C	Week4
+30BW7-5			Syrup	Week4-C	Week4
+30BW7-6			Syrup	Week4-C	Week4
+30BW7-7			Syrup	Week4-C	Week4
+30BW7-8			Syrup	Week4-C	Week4
+30BW7-9			Syrup	Week4-C	Week4
+30BW7-10			Syrup	Week4-C	Week4
+30BW7-11			Syrup	Week4-C	Week4
+30BW7-12			Syrup	Week4-C	Week4
+30BW7-13			Syrup	Week4-C	Week4
+30BW7-14			Syrup	Week4-C	Week4
+30BW7-15			Syrup	Week4-C	Week4
+9SE7-1			0.1% Roundup	Week4-R	Week4
+9SE7-2			0.1% Roundup	Week4-R	Week4
+9SE7-3			0.1% Roundup	Week4-R	Week4
+9SE7-4			0.1% Roundup	Week4-R	Week4
+9SE7-5			0.1% Roundup	Week4-R	Week4
+9SE7-6			0.1% Roundup	Week4-R	Week4
+9SE7-7			0.1% Roundup	Week4-R	Week4
+9SE7-8			0.1% Roundup	Week4-R	Week4
+9SE7-9			0.1% Roundup	Week4-R	Week4
+9SE7-10			0.1% Roundup	Week4-R	Week4
+9SE7-11			0.1% Roundup	Week4-R	Week4
+9SE7-12			0.1% Roundup	Week4-R	Week4
+9SE7-13			0.1% Roundup	Week4-R	Week4
+9SE7-14			0.1% Roundup	Week4-R	Week4
+9SE7-15			0.1% Roundup	Week4-R	Week4
+10SE7-1			0.1% Roundup	Week4-R	Week4
+10SE7-2			0.1% Roundup	Week4-R	Week4
+10SE7-3			0.1% Roundup	Week4-R	Week4
+10SE7-4			0.1% Roundup	Week4-R	Week4
+10SE7-5			0.1% Roundup	Week4-R	Week4
+10SE7-6			0.1% Roundup	Week4-R	Week4
+10SE7-7			0.1% Roundup	Week4-R	Week4
+10SE7-8			0.1% Roundup	Week4-R	Week4
+10SE7-9			0.1% Roundup	Week4-R	Week4
+10SE7-10			0.1% Roundup	Week4-R	Week4
+10SE7-11			0.1% Roundup	Week4-R	Week4
+10SE7-12			0.1% Roundup	Week4-R	Week4
+10SE7-13			0.1% Roundup	Week4-R	Week4
+10SE7-14			0.1% Roundup	Week4-R	Week4
+10SE7-15			0.1% Roundup	Week4-R	Week4
+26BW7-1			0.1% Roundup	Week4-R	Week4
+26BW7-2			0.1% Roundup	Week4-R	Week4
+26BW7-3			0.1% Roundup	Week4-R	Week4
+26BW7-4			0.1% Roundup	Week4-R	Week4
+26BW7-5			0.1% Roundup	Week4-R	Week4
+26BW7-6			0.1% Roundup	Week4-R	Week4
+26BW7-7			0.1% Roundup	Week4-R	Week4
+26BW7-8			0.1% Roundup	Week4-R	Week4
+26BW7-9			0.1% Roundup	Week4-R	Week4
+26BW7-10			0.1% Roundup	Week4-R	Week4
+26BW7-11			0.1% Roundup	Week4-R	Week4
+26BW7-12			0.1% Roundup	Week4-R	Week4
+26BW7-13			0.1% Roundup	Week4-R	Week4
+26BW7-14			0.1% Roundup	Week4-R	Week4
+26BW7-15			0.1% Roundup	Week4-R	Week4
+27BW7-1			0.1% Roundup	Week4-R	Week4
+27BW7-2			0.1% Roundup	Week4-R	Week4
+27BW7-3			0.1% Roundup	Week4-R	Week4
+27BW7-4			0.1% Roundup	Week4-R	Week4
+27BW7-5			0.1% Roundup	Week4-R	Week4
+27BW7-6			0.1% Roundup	Week4-R	Week4
+27BW7-7			0.1% Roundup	Week4-R	Week4
+27BW7-8			0.1% Roundup	Week4-R	Week4
+27BW7-9			0.1% Roundup	Week4-R	Week4
+27BW7-10			0.1% Roundup	Week4-R	Week4
+27BW7-11			0.1% Roundup	Week4-R	Week4
+27BW7-12			0.1% Roundup	Week4-R	Week4
+27BW7-13			0.1% Roundup	Week4-R	Week4
+27BW7-14			0.1% Roundup	Week4-R	Week4
+27BW7-15			0.1% Roundup	Week4-R	Week4
+28BW7-1			0.1% Roundup	Week4-R	Week4
+28BW7-2			0.1% Roundup	Week4-R	Week4
+28BW7-3			0.1% Roundup	Week4-R	Week4
+28BW7-4			0.1% Roundup	Week4-R	Week4
+28BW7-5			0.1% Roundup	Week4-R	Week4
+28BW7-6			0.1% Roundup	Week4-R	Week4
+28BW7-7			0.1% Roundup	Week4-R	Week4
+28BW7-8			0.1% Roundup	Week4-R	Week4
+28BW7-9			0.1% Roundup	Week4-R	Week4
+28BW7-10			0.1% Roundup	Week4-R	Week4
+28BW7-11			0.1% Roundup	Week4-R	Week4
+28BW7-12			0.1% Roundup	Week4-R	Week4
+28BW7-13			0.1% Roundup	Week4-R	Week4
+28BW7-14			0.1% Roundup	Week4-R	Week4
+28BW7-15			0.1% Roundup	Week4-R	Week4
+1SE8-1			Syrup	Week8-C	Week8
+1SE8-2			Syrup	Week8-C	Week8
+1SE8-3			Syrup	Week8-C	Week8
+1SE8-4			Syrup	Week8-C	Week8
+1SE8-5			Syrup	Week8-C	Week8
+1SE8-6			Syrup	Week8-C	Week8
+1SE8-7			Syrup	Week8-C	Week8
+1SE8-8			Syrup	Week8-C	Week8
+1SE8-9			Syrup	Week8-C	Week8
+1SE8-10			Syrup	Week8-C	Week8
+1SE8-11			Syrup	Week8-C	Week8
+1SE8-12			Syrup	Week8-C	Week8
+1SE8-13			Syrup	Week8-C	Week8
+1SE8-14			Syrup	Week8-C	Week8
+1SE8-15			Syrup	Week8-C	Week8
+4SE8-1			Syrup	Week8-C	Week8
+4SE8-2			Syrup	Week8-C	Week8
+4SE8-3			Syrup	Week8-C	Week8
+4SE8-4			Syrup	Week8-C	Week8
+4SE8-5			Syrup	Week8-C	Week8
+4SE8-6			Syrup	Week8-C	Week8
+4SE8-7			Syrup	Week8-C	Week8
+4SE8-8			Syrup	Week8-C	Week8
+4SE8-9			Syrup	Week8-C	Week8
+4SE8-10			Syrup	Week8-C	Week8
+4SE8-11			Syrup	Week8-C	Week8
+4SE8-12			Syrup	Week8-C	Week8
+4SE8-13			Syrup	Week8-C	Week8
+4SE8-14			Syrup	Week8-C	Week8
+4SE8-15			Syrup	Week8-C	Week8
+5SE8-1			Syrup	Week8-C	Week8
+5SE8-2			Syrup	Week8-C	Week8
+5SE8-3			Syrup	Week8-C	Week8
+5SE8-4			Syrup	Week8-C	Week8
+5SE8-5			Syrup	Week8-C	Week8
+5SE8-6			Syrup	Week8-C	Week8
+5SE8-7			Syrup	Week8-C	Week8
+5SE8-8			Syrup	Week8-C	Week8
+5SE8-9			Syrup	Week8-C	Week8
+5SE8-10			Syrup	Week8-C	Week8
+5SE8-11			Syrup	Week8-C	Week8
+5SE8-12			Syrup	Week8-C	Week8
+5SE8-13			Syrup	Week8-C	Week8
+5SE8-14			Syrup	Week8-C	Week8
+5SE8-15			Syrup	Week8-C	Week8
+8SE8-1			Syrup	Week8-C	Week8
+8SE8-2			Syrup	Week8-C	Week8
+8SE8-3			Syrup	Week8-C	Week8
+8SE8-4			Syrup	Week8-C	Week8
+8SE8-5			Syrup	Week8-C	Week8
+8SE8-6			Syrup	Week8-C	Week8
+8SE8-7			Syrup	Week8-C	Week8
+8SE8-8			Syrup	Week8-C	Week8
+8SE8-9			Syrup	Week8-C	Week8
+8SE8-10			Syrup	Week8-C	Week8
+8SE8-11			Syrup	Week8-C	Week8
+8SE8-12			Syrup	Week8-C	Week8
+8SE8-13			Syrup	Week8-C	Week8
+8SE8-14			Syrup	Week8-C	Week8
+8SE8-15			Syrup	Week8-C	Week8
+30BW8-1			Syrup	Week8-C	Week8
+30BW8-2			Syrup	Week8-C	Week8
+30BW8-3			Syrup	Week8-C	Week8
+30BW8-4			Syrup	Week8-C	Week8
+30BW8-5			Syrup	Week8-C	Week8
+30BW8-6			Syrup	Week8-C	Week8
+30BW8-7			Syrup	Week8-C	Week8
+30BW8-8			Syrup	Week8-C	Week8
+30BW8-9			Syrup	Week8-C	Week8
+30BW8-10			Syrup	Week8-C	Week8
+30BW8-11			Syrup	Week8-C	Week8
+30BW8-12			Syrup	Week8-C	Week8
+30BW8-13			Syrup	Week8-C	Week8
+30BW8-14			Syrup	Week8-C	Week8
+30BW8-15			Syrup	Week8-C	Week8
+9SE8-1			0.1% Roundup	Week8-R	Week8
+9SE8-2			0.1% Roundup	Week8-R	Week8
+9SE8-3			0.1% Roundup	Week8-R	Week8
+9SE8-4			0.1% Roundup	Week8-R	Week8
+9SE8-5			0.1% Roundup	Week8-R	Week8
+9SE8-6			0.1% Roundup	Week8-R	Week8
+9SE8-7			0.1% Roundup	Week8-R	Week8
+9SE8-8			0.1% Roundup	Week8-R	Week8
+9SE8-9			0.1% Roundup	Week8-R	Week8
+9SE8-10			0.1% Roundup	Week8-R	Week8
+9SE8-11			0.1% Roundup	Week8-R	Week8
+9SE8-12			0.1% Roundup	Week8-R	Week8
+9SE8-13			0.1% Roundup	Week8-R	Week8
+9SE8-14			0.1% Roundup	Week8-R	Week8
+9SE8-15			0.1% Roundup	Week8-R	Week8
+10SE8-1			0.1% Roundup	Week8-R	Week8
+10SE8-2			0.1% Roundup	Week8-R	Week8
+10SE8-3			0.1% Roundup	Week8-R	Week8
+10SE8-4			0.1% Roundup	Week8-R	Week8
+10SE8-5			0.1% Roundup	Week8-R	Week8
+10SE8-6			0.1% Roundup	Week8-R	Week8
+10SE8-7			0.1% Roundup	Week8-R	Week8
+10SE8-8			0.1% Roundup	Week8-R	Week8
+10SE8-9			0.1% Roundup	Week8-R	Week8
+10SE8-10			0.1% Roundup	Week8-R	Week8
+10SE8-11			0.1% Roundup	Week8-R	Week8
+10SE8-12			0.1% Roundup	Week8-R	Week8
+10SE8-13			0.1% Roundup	Week8-R	Week8
+10SE8-14			0.1% Roundup	Week8-R	Week8
+10SE8-15			0.1% Roundup	Week8-R	Week8
+26BW8-1			0.1% Roundup	Week8-R	Week8
+26BW8-2			0.1% Roundup	Week8-R	Week8
+26BW8-3			0.1% Roundup	Week8-R	Week8
+26BW8-4			0.1% Roundup	Week8-R	Week8
+26BW8-5			0.1% Roundup	Week8-R	Week8
+26BW8-6			0.1% Roundup	Week8-R	Week8
+26BW8-7			0.1% Roundup	Week8-R	Week8
+26BW8-8			0.1% Roundup	Week8-R	Week8
+26BW8-9			0.1% Roundup	Week8-R	Week8
+26BW8-10			0.1% Roundup	Week8-R	Week8
+26BW8-11			0.1% Roundup	Week8-R	Week8
+26BW8-12			0.1% Roundup	Week8-R	Week8
+26BW8-13			0.1% Roundup	Week8-R	Week8
+26BW8-14			0.1% Roundup	Week8-R	Week8
+26BW8-15			0.1% Roundup	Week8-R	Week8
+27BW8-1			0.1% Roundup	Week8-R	Week8
+27BW8-2			0.1% Roundup	Week8-R	Week8
+27BW8-3			0.1% Roundup	Week8-R	Week8
+27BW8-4			0.1% Roundup	Week8-R	Week8
+27BW8-5			0.1% Roundup	Week8-R	Week8
+27BW8-6			0.1% Roundup	Week8-R	Week8
+27BW8-7			0.1% Roundup	Week8-R	Week8
+27BW8-8			0.1% Roundup	Week8-R	Week8
+27BW8-9			0.1% Roundup	Week8-R	Week8
+27BW8-10			0.1% Roundup	Week8-R	Week8
+27BW8-11			0.1% Roundup	Week8-R	Week8
+27BW8-12			0.1% Roundup	Week8-R	Week8
+27BW8-13			0.1% Roundup	Week8-R	Week8
+27BW8-14			0.1% Roundup	Week8-R	Week8
+27BW8-15			0.1% Roundup	Week8-R	Week8
+28BW8-1			0.1% Roundup	Week8-R	Week8
+28BW8-2			0.1% Roundup	Week8-R	Week8
+28BW8-3			0.1% Roundup	Week8-R	Week8
+28BW8-4			0.1% Roundup	Week8-R	Week8
+28BW8-5			0.1% Roundup	Week8-R	Week8
+28BW8-6			0.1% Roundup	Week8-R	Week8
+28BW8-7			0.1% Roundup	Week8-R	Week8
+28BW8-8			0.1% Roundup	Week8-R	Week8
+28BW8-9			0.1% Roundup	Week8-R	Week8
+28BW8-10			0.1% Roundup	Week8-R	Week8
+28BW8-11			0.1% Roundup	Week8-R	Week8
+28BW8-12			0.1% Roundup	Week8-R	Week8
+28BW8-13			0.1% Roundup	Week8-R	Week8
+28BW8-14			0.1% Roundup	Week8-R	Week8
+28BW8-15			0.1% Roundup	Week8-R	Week8

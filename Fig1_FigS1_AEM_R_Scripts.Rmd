@@ -1,0 +1,412 @@
+---
+title: "R Scripts for Figures 1 and S1"
+author: "Erick Motta"
+---
+
+# Load packages:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(interactions)
+library(car)
+library(tidyverse)
+library(cowplot)
+library(FSA) ### for Dunn's test
+library(patchwork) ### for plotting graphs together
+```
+
+### ABSOLUTE ABUNDANCE DATA:
+```{r}
+qiime2_data <- read.table("tables/asv_tables/qiime2-NEW-feature-table-absolute.txt", header = T)
+qiime2_data$Bee <- factor(qiime2_data$Bee)
+qiime2_data$Description <- factor(qiime2_data$Description)
+qiime2_data$Day <- factor(qiime2_data$Day)
+
+df_qiime2_data <- data.frame(qiime2_data)
+```
+
+# All bacteria:
+```{r}
+BOXPLOT_new_qiime2_TB <- ggplot(data = df_qiime2_data, aes(x = Description, y = Total_bact, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("All bacteria") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "plain", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analyses:
+kruskal.test(Total_bact ~ Description, data = qiime2_data)
+dunnTest(Total_bact ~ Description, data = qiime2_data, method = "bh")
+```
+
+# Snodgrassela absolute abundance:
+```{r}
+BOXPLOT_snod_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = Snodgrassella, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analyses:
+kruskal.test(Snodgrassella ~ Description, data = qiime2_data)
+dunnTest(Snodgrassella ~ Description, data = qiime2_data, method = "bh")
+```
+
+# Gilliamella absolute abundance:
+```{r}
+BOXPLOT_gill_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = Gilliamella, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Gilliamella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analyses:
+kruskal.test(Gilliamella ~ Description, data = qiime2_data)
+dunnTest(Gilliamella ~ Description, data = qiime2_data, method = "bh")
+```
+
+# Bifidobacterium absolute abundance:
+```{r}
+BOXPLOT_bifido_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = Bifidobacterium, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Bifidobacterium") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analyses:
+kruskal.test(Gilliamella ~ Description, data = qiime2_data)
+dunnTest(Gilliamella ~ Description, data = qiime2_data, method = "bh")
+```
+
+# Other groups, quick check:
+```{r}
+# Statistical analyses:
+kruskal.test(Firm4 ~ Description, data = qiime2_data)
+kruskal.test(Firm5 ~ Description, data = qiime2_data)
+kruskal.test(L_apis ~ Description, data = qiime2_data)
+kruskal.test(L_helsingborgensis ~ Description, data = qiime2_data)
+kruskal.test(L_kullabergensis ~ Description, data = qiime2_data)
+kruskal.test(L_melliventris ~ Description, data = qiime2_data)
+kruskal.test(L_mellis ~ Description, data = qiime2_data)
+kruskal.test(L_mellifer ~ Description, data = qiime2_data)
+kruskal.test(Frischella ~ Description, data = qiime2_data)
+kruskal.test(Bartonella ~ Description, data = qiime2_data)
+kruskal.test(Bombella ~ Description, data = qiime2_data)
+kruskal.test(Enterobacteriaceae ~ Description, data = qiime2_data)
+kruskal.test(Commensalibacter ~ Description, data = qiime2_data)
+kruskal.test(L_kunkeei ~ Description, data = qiime2_data)
+kruskal.test(Fructobacillus ~ Description, data = qiime2_data)
+kruskal.test(Other_bact ~ Description, data = qiime2_data)
+```
+
+# Snodgrassella qPCR abundance:
+```{r}
+BOXPLOT_NEW_SA_QPCR <- ggplot(data = df_qiime2_data, aes(x = Description, y = Snod_qpcr, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella alvi") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR) '))
+
+# Statistical analyses:
+kruskal.test(Snod_qpcr ~ Description, data = new_data_rel)
+dunnTest(Snod_qpcr ~ Description, data = new_data_rel, method = "bh")
+```
+
+
+### RELATIVE ABUNDANCE:
+```{r}
+qiime2_data_rel <- read.table("qiime2-asv-tables/qiime2-NEW-feature-table-relative.txt", header = T)
+qiime2_data_rel$Bee <- factor(qiime2_data_rel$Bee)
+qiime2_data_rel$Description <- factor(qiime2_data_rel$Description)
+qiime2_data_rel$Day <- factor(qiime2_data_rel$Day)
+
+df_qiime2_data_rel <- data.frame(qiime2_data_rel)
+```
+
+# Snodgrassella relative abundance:
+```{r}
+BOXPLOT_NEW_SA_REL <- ggplot(data = df_qiime2_data_rel, aes(x = Description, y = Snodgrassella, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella alvi") +
+   theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote('Relative abundance'))
+
+# Statistical analyses:
+kruskal.test(Snodgrassella ~ Description, data = new_data_rel)
+dunnTest(Snodgrassella ~ Description, data = new_data_rel, method = "bh")
+```
+
+# Firm-5 relative abundance:
+```{r Model}
+BOXPLOT_NEW_F5_REL <- ggplot(data = df_qiime2_data_rel, aes(x = Description, y = Firm5, color = Description)) +
+  geom_boxplot() +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Lactobacillus Firm-5") +
+   theme_classic() +
+  theme(
+    plot.title = element_text(face = "italic", size = 10, hjust = 0.5)
+  ) +
+  theme(
+    axis.text.x = element_text(color = "black", size = 10), 
+    axis.text.y = element_text(color = "black", size = 10)
+    ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size = 10)
+    ) +
+  theme(legend.position = "none") +
+  ylab(bquote('Relative abundance'))
+
+# Statistical analyses:
+kruskal.test(Firm5 ~ Description, data = new_data_rel)
+dunnTest(Firm5 ~ Description, data = new_data_rel, method = "bh")
+```
+
+# Other groups, quick check:
+```{r}
+kruskal.test(L_mellis ~ Description, data = new_data_rel)
+dunnTest(L_mellis ~ Description, data = new_data_rel, method = "bh")
+
+kruskal.test(L_mellifer ~ Description, data = new_data_rel)
+
+kruskal.test(L_apis ~ Description, data = new_data_rel)
+dunnTest(L_apis ~ Description, data = new_data_rel, method = "bh")
+
+kruskal.test(L_helsingborgensis ~ Description, data = new_data_rel)
+kruskal.test(L_kullabergensis ~ Description, data = new_data_rel)
+kruskal.test(L_melliventris ~ Description, data = new_data_rel)
+kruskal.test(Frischella ~ Description, data = new_data_rel)
+kruskal.test(Bartonella ~ Description, data = new_data_rel)
+kruskal.test(Commensalibacter ~ Description, data = new_data_rel)
+kruskal.test(Bombella ~ Description, data = new_data_rel)
+kruskal.test(Enterobacteriaceae ~ Description, data = new_data_rel)
+kruskal.test(L_kunkeei ~ Description, data = new_data_rel)
+kruskal.test(Fructobacillus ~ Description, data = new_data_rel)
+```
+
+
+### DIVERSITY ANALYSES:
+```{r}
+### Step 1: Load packages
+library(ggplot2)
+library(vegan)
+library(phyloseq)
+library(DESeq2)
+library(grid)
+library(gridExtra)
+
+### Step 2: Import files needed for plotting diversity
+# Use ASV table used for other analyses in QIIME2, converted into JSON format with the script biom convert.
+asv_table<-import_biom("tables/diversity_tables/NEW/feature-table_w_tax_json.biom")
+
+# Use the tree.nwk tree from QIIME2
+# Obtain the rooted-tree.qza (command:qiime phylogeny align-to-tree-mafft-fasttree) and use it as input to obtain the tree.nwk (command: qiime tools export)
+tree_file<-read_tree_greengenes("tables/diversity_tables/NEW/tree.nwk")
+
+#Before importing the mapping file, make a new copy of the file and remove the # from the header
+mapping_file<-import_qiime_sample_data("tables/diversity_tables/NEW/sample_map.txt")
+
+### Step 3: Merge data into one phyloseq-class object and check contents
+data_NEW <- merge_phyloseq(asv_table,mapping_file,tree_file)
+
+# Check taxonomy rank names of phyloseq object
+rank_names(data_NEW)
+
+# Use colnames to assign the correct names to the columns
+tax_names <- data.frame(tax_table(data_NEW))
+colnames(tax_names) <- c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
+tax_table(data_NEW) <- tax_table(as.matrix(tax_names))
+
+# Check taxonomy rank names again
+rank_names(data_NEW)
+
+#Check what genera are represented in dataset
+get_taxa_unique(data_NEW,"Genus")
+
+#Check number of taxa and samples in dataset
+ntaxa(data_NEW)
+nsamples(data_NEW)
+
+### Step 4: Scale reads to even depth
+### matround function
+# Better rounding function than R's base round
+matround <- function(x){trunc(x+0.5)}
+
+### scale_reads function
+# Function to scale reads (written by my prev lab mate)
+# Modified from code written by Michelle Berry, available at http://deneflab.github.io/MicrobeMiseq/ 
+# Scales reads by 
+# 1) taking proportions
+# 2) multiplying by a given library size of n
+# 3) rounding 
+# Default for n is the minimum sample size in your library
+# Default for round is floor
+scale_reads <- function(physeq, n = min(sample_sums(physeq)), round = "round") {
+  
+  # transform counts to n
+  physeq.scale <- transform_sample_counts(physeq, 
+                                          function(x) {(n * x/sum(x))}
+  )
+  
+  # Pick the rounding functions
+  if (round == "floor"){
+    otu_table(physeq.scale) <- floor(otu_table(physeq.scale))
+  } else if (round == "round"){
+    otu_table(physeq.scale) <- round(otu_table(physeq.scale))
+  } else if (round == "matround"){
+    otu_table(physeq.scale) <- matround(otu_table(physeq.scale))
+  }
+  
+  # Prune taxa and return new phyloseq object
+  physeq.scale <- prune_taxa(taxa_sums(physeq.scale) > 0, physeq.scale)
+  return(physeq.scale)
+}
+
+### Run the commands
+data_NEW_scale <- scale_reads(physeq = data_NEW,
+                                 n = min(sample_sums(data_NEW)),
+                                 round = "matround")
+
+#See OTU table:
+otu_table(data_NEW_scale)
+
+#Extract abundance matrix from the phyloseq object
+OTU1_scale = as(otu_table(data_NEW_scale), "matrix")
+# transpose if necessary
+if(taxa_are_rows(data_NEW_scale)){OTU1 <- t(OTU1)}
+# Coerce to data.frame
+OTUdf = as.data.frame(OTU1)
+
+sum_NEW_scale <- colSums(OTU1_scale)
+
+### Step 5: Plotting beta diversity metrics
+### Bray-Curtis
+library(proto)
+library(devtools)
+library(plotly)
+
+# Make ordination, specifying the type of ordination (PCoA), the metric (bray-curtis).
+bray_curtis_ordination <- ordinate(data_NEW_scale,"PCoA",distance="bray")
+
+# Plot ordination
+pcoa_bray_curtis = plot_ordination(data_NEW_scale,bray_curtis_ordination,color="Condition",title="Bray-Curtis")
+
+PCoA_Bray_NEW <- pcoa_bray_curtis + 
+  stat_ellipse(geom = "polygon", level = 0.95, alpha = 0.2, aes(fill=Condition)) + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  scale_fill_manual(values = c('#999999', '#6CB961', '#E69F00')) +
+  geom_point(aes(shape=Condition), size=3) + 
+  scale_shape_manual(values = c(16,15,17)) +
+  theme_bw() +
+  ggtitle("PCoA plot of Bray-Curtis dissimilarity") +
+  theme(plot.title = element_text(face = "plain", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  xlab('PCo1 - 24.7%') +
+  ylab('PCo2 - 18.4%')
+
+### Weighted UniFrac
+# Make ordination, specifying the type of ordination (PCoA), the metric (unifrac) and if it is weighted or not. 
+weighted_unifrac_ordination <- ordinate(data_NEW_scale,"PCoA",distance="unifrac",weighted=TRUE)
+
+# Plot ordination
+pcoa_weighted_unifrac = plot_ordination(data_NEW_scale,weighted_unifrac_ordination,color="Condition",title="Weighted UniFrac")
+
+PCoA_weighted_unifrac_NEW <- pcoa_weighted_unifrac + 
+  stat_ellipse(geom = "polygon", level = 0.95, alpha = 0.2, aes(fill=Condition)) + 
+  scale_color_manual(values=c('#999999', '#6CB961', '#E69F00')) +
+  scale_fill_manual(values = c('#999999', '#6CB961', '#E69F00')) +
+  geom_point(aes(shape=Condition), size=3) + 
+  scale_shape_manual(values = c(16,15,17)) +
+  theme_bw() +
+  ggtitle("PCoA plot of weighted unifrac") +
+  theme(plot.title = element_text(face = "plain", hjust = 0.5, size = 10)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  xlab('PCo1 - 42.7%') +
+  ylab('PCo2 - 22.6%')
+
+### Step 6: Plotting alpha diversity metrics
+estimate_richness(data_NEW_scale,split=TRUE,measures=c("Chao1","observed","Shannon"))
+
+host_richness <- plot_richness(data_NEW_scale,"Condition","Condition",measures=c("Chao1","observed","Shannon"))+
+  geom_boxplot()+
+  scale_x_discrete(limits=c("Control","Glyphosate","Roundup"))+
+  theme(legend.position="none")
+
+host_richness
+```
+
+### Plotting Fig1 and FigS1:
+```{r}
+### Figure 1:
+a <- BOXPLOT_new_qiime2_TB | BOXPLOT_snod_qiime2 | BOXPLOT_gill_qiime2 | BOXPLOT_bifido_qiime2 | PCoA_Bray_NEW 
+
+a + plot_layout(ncol=5,widths=c(1,1,1,1,3)) + plot_annotation(tag_levels = 'A')
+
+### Figure S1:
+BOXPLOT_NEW_SA_QPCR + BOXPLOT_NEW_SA_REL + BOXPLOT_NEW_F5_REL + plot_spacer() + plot_spacer() + PCoA_weighted_unifrac_NEW + plot_annotation(tag_levels = 'A')
+
+# Boxplots for Bray-Curtis and Weighted Unifrac dissimilarities were obtained from QIIME2.
+```

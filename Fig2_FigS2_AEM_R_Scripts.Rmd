@@ -1,0 +1,598 @@
+---
+title: "R Scripts for Figures 2 and S3"
+author: "Erick Motta"
+---
+
+### First Worker Recovery Experiment - Generalized linear mixed models
+
+# Load packages:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(lme4)
+library(interactions)
+library(car)
+library(effects)
+library(emmeans)
+library(tidyverse)
+library(cowplot)
+library(ggpubr)
+library(patchwork) ### for plotting graphs together
+library(gridExtra)
+```
+
+### ABSOLUTE ABUNDANCE DATA:
+```{r Model}
+wre_dada2_data <- read.table("tables/asv_tables/qiime2-WRE-feature-table-absolute.txt", header = T)
+wre_dada2_data$Bee <- factor(wre_dada2_data$Bee)
+wre_dada2_data$Description <- factor(wre_dada2_data$Description)
+wre_dada2_data$Day <- factor(wre_dada2_data$Day)
+```
+
+# All bacteria:
+```{r Model}
+# linear_model <- glmer(Variable_effect ~ Fixed_effects + (1 | Nested_random_effects), family = poisson)
+
+# glmer, allow to fit a generalized linear mixed-effects model: these models include a link function that allows to predict response variables with non-Gaussian distributions.
+
+# if your outcome is discrete, i.e., you are dealing with counts (how many times something happen in given time interval), then the most common choice of the distribution to start with is Poisson distribution. The problem with Poisson distribution is that it is rather inflexible in the fact that it assumes that mean is equal to variance, if this assumption is not met, you may consider using quasi-Poisson family, or negative binomial distribution.
+
+# Model:
+wre_dada2_total_bact.m1 <- glmer(Total_bact ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_total_bact.m1)
+
+# Description*Day effect:
+wre_dada2_total_bact <- allEffects(wre_dada2_total_bact.m1)
+print(wre_dada2_total_bact)
+
+# Create a data frame:
+df_wre_dada2_total_bact <- data.frame(wre_dada2_total_bact$`Description:Day`)
+
+# Plot:
+WRE_TB <- ggplot(data = df_wre_dada2_total_bact,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 5, aes(shape=Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("All bacteria") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "plain", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analysis:
+emmeans(wre_dada2_total_bact.m1, pairwise~Description|Day)
+```
+
+# Snodgrassella:
+```{r}
+# Model:
+wre_dada2_snod.m1 <- glmer(Snodgrassella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_snod.m1)
+
+# Description*Day effect:
+wre_dada2_snod <- allEffects(wre_dada2_snod.m1)
+print(wre_dada2_snod)
+
+# Create a data frame:
+df_wre_dada2_snod <- data.frame(wre_dada2_snod$`Description:Day`)
+
+# Plot:
+WRE_DADA2_SA <- ggplot(data = df_wre_dada2_snod,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 5, aes(shape=Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analysis:
+emmeans(wre_dada2_snod.m1, pairwise~Description|Day)
+```
+
+# Gilliamella:
+```{r}
+# Model:
+wre_dada2_gill.m1 <- glmer(Gilliamella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_gill.m1)
+
+# Description*Day effect:
+wre_dada2_gill <- allEffects(wre_dada2_gill.m1)
+print(wre_dada2_gill)
+
+# Create a data frame:
+df_wre_dada2_gill <- data.frame(wre_dada2_gill$`Description:Day`)
+
+# Plot:
+WRE_DADA2_GI <- ggplot(data = df_wre_dada2_gill,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 5, aes(shape=Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999','#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Gilliamella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analysis:
+emmeans(wre_dada2_gill.m1, pairwise~Description|Day)
+```
+
+# Bifidobacterium:
+```{r}
+# Model:
+wre_dada2_bifido.m1 <- glmer(Bifidobacterium ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_bifido.m1)
+
+# Description*Day effect:
+wre_dada2_bifido <- allEffects(wre_dada2_bifido.m1)
+print(wre_dada2_bifido)
+
+# Create a data frame:
+df_wre_dada2_bifido <- data.frame(wre_dada2_bifido$`Description:Day`)
+
+# Plot:
+WRE_DADA2_BI <- ggplot(data = df_wre_dada2_bifido,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 5, aes(shape=Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999','#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Bifidobacterium") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analysis:
+emmeans(wre_dada2_bifido.m1, pairwise~Description|Day)
+```
+
+# Lactobacillus Firm-5:
+```{r}
+# Model:
+wre_dada2_firm5.m1 <- glmer(Firm5 ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_firm5.m1)
+
+# Description*Day effect:
+wre_dada2_firm5 <- allEffects(wre_dada2_firm5.m1)
+print(wre_dada2_firm5)
+
+# Create a data frame:
+df_wre_dada2_firm5 <- data.frame(wre_dada2_firm5$`Description:Day`)
+
+# Plot:
+WRE_DADA2_F5 <- ggplot(data = df_wre_dada2_firm5,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 5, aes(shape=Description), position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999','#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Lactobacillus Firm-5") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+
+# Statistical analysis:
+emmeans(wre_dada2_firm5.m1, pairwise~Description|Day)
+```
+
+# Lactobacillus Firm-4:
+```{r}
+wre_dada2_firm4.m1 <- glmer(Firm4 ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_firm4.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_firm4.m1, pairwise~Description|Day)
+```
+
+# Frischella:
+```{r}
+wre_dada2_fris.m1 <- glmer(Frischella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_fris.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_fris.m1, pairwise~Description|Day)
+```
+
+# Bartonella:
+```{r Model}
+wre_dada2_bart.m1 <- glmer(Bartonella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_bart.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_bart.m1, pairwise~Description|Day)
+```
+
+# Other bacteria:
+```{r Model}
+wre_dada2_other_bact.m1 <- glmer(Other_bact ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_data)
+summary(wre_dada2_other_bact.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_other_bact.m1, pairwise~Description|Day)
+```
+
+
+### RELATIVE ABUNDANCE DATA:
+```{r Model}
+wre_dada2_rel <- read.table("tables/asv_tables/qiime2-WRE-feature-table-relative.txt", header = T)
+wre_dada2_rel$Bee <- factor(wre_dada2_rel$Bee)
+wre_dada2_rel$Description <- factor(wre_dada2_rel$Description)
+wre_dada2_rel$Day <- factor(wre_dada2_rel$Day)
+```
+
+# Snodgrasssella relative abundance:
+```{r}
+# Model:
+wre_dada2_snod_rel.m1 <- glmer(Snodgrassella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_rel)
+summary(wre_dada2_snod_rel.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_snod_rel.m1, pairwise~Description|Day)
+
+# Plot:
+emmip(wre_dada2_snod_rel.m1, Description~Day, CIs = TRUE)
+```
+
+# Bifidobacterium relative abundance:
+```{r}
+# Model:
+wre_dada2_bifido_rel.m1 <- glmer(Bifidobacterium ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_rel)
+summary(wre_dada2_bifido_rel.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_bifido_rel.m1, pairwise~Description|Day)
+
+# Plot:
+emmip(wre_dada2_bifido_rel.m1, Description~Day, CIs = TRUE)
+```
+
+# Lactobacillus Firm-5 relative abundance:
+```{r}
+# Model:
+wre_dada2_firm5_rel.m1 <- glmer(Firm5 ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_rel)
+summary(wre_dada2_firm5_rel.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_firm5_rel.m1, pairwise~Description|Day)
+
+# Plot:
+emmip(wre_dada2_firm5_rel.m1, Description~Day, CIs = TRUE)
+```
+
+# Lactobacillus Firm-4 relative abundance:
+```{r}
+# Model:
+wre_dada2_firm4_rel.m1 <- glmer(Firm4 ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_rel)
+summary(wre_dada2_firm4_rel.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_firm4_rel.m1, pairwise~Description|Day)
+
+# Plot:
+emmip(wre_dada2_firm4_rel.m1, Description~Day, CIs = TRUE)
+```
+
+# Gilliamella relative abundance:
+```{r}
+# Model:
+wre_dada2_gill_rel.m1 <- glmer(Gilliamella ~ Description*Day + (1 | Bee), family = poisson, data = wre_dada2_rel)
+summary(wre_dada2_gill_rel.m1)
+
+# Statistical analysis:
+emmeans(wre_dada2_gill_rel.m1, pairwise~Description|Day)
+
+# Plot:
+emmip(wre_dada2_gill_rel.m1, Description~Day, CIs = TRUE)
+```
+
+
+### Second worker recovery experiment - June, 2019 qPCR data, Total bacteria and Snodgrassella abundances at days 0 and 3 post-treatment
+
+# Snodgrassella:
+```{r}
+# Model:
+wre2_qpcr_data <- read.table("tables/qPCR-WRE-experiment2.txt", header = T)
+wre2_qpcr_data$Bee <- factor(wre2_qpcr_data$Bee)
+wre2_qpcr_data$Description <- factor(wre2_qpcr_data$Description)
+wre2_qpcr_data$Day <- factor(wre2_qpcr_data$Day)
+
+wre2_qpcr_snod.m1 <- glmer(Snodgrassella ~ Description*Day + (1 | Bee), family = poisson, data = wre2_qpcr_data)
+summary(wre2_qpcr_snod.m1)
+
+# Description*Day effect:
+wre2_qpcr_snod <- allEffects(wre2_qpcr_snod.m1)
+print(wre2_qpcr_snod)
+
+# Create a data frame:
+df_wre2_qpcr_snod <- data.frame(wre2_qpcr_snod$`Description:Day`)
+
+# Plot:
+WRE2_QPCR_SA <- ggplot(data = df_wre2_qpcr_snod,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(aes(shape=Description), size = 5, position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 8)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+
+# Statistical analysis:
+emmeans(wre2_qpcr_snod.m1, pairwise~Description|Day)
+```
+
+# All bacteria:
+```{r}
+# Model:
+wre2_qpcr_total.m1 <- glmer(Total_bact ~ Description*Day + (1 | Bee), family = poisson, data = wre2_qpcr_data)
+summary(wre2_qpcr_total.m1)
+
+# Description*Day effect:
+wre2_qpcr_total <- allEffects(wre2_qpcr_total.m1)
+print(wre2_qpcr_total)
+
+# Create a data frame:
+df_wre2_qpcr_total <- data.frame(wre2_qpcr_total$`Description:Day`)
+
+# Plot:
+WRE2_QPCR_TB <- ggplot(data = df_wre2_qpcr_total,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(aes(shape=Description), size = 5, position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("All bacteria") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "plain", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 8)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+
+# Statistical analysis:
+emmeans(wre2_qpcr_total.m1, pairwise~Description|Day)
+```
+
+### Third worker recovery experiment - June, 2019 qPCR data for Snodgrassella abundance at days 0 and 3 post-treatment
+
+# Snodgrassella:
+```{r}
+# Model:
+wre3_qpcr_data <- read.table("tables/qPCR-WRE-experiment3.txt", header = T)
+wre3_qpcr_data$Bee <- factor(wre3_qpcr_data$Bee)
+wre3_qpcr_data$Description <- factor(wre3_qpcr_data$Description)
+wre3_qpcr_data$Day <- factor(wre3_qpcr_data$Day)
+
+wre3_qpcr_snod.m1 <- glmer(Snodgrassella ~ Description*Day + (1 | Bee), family = poisson, data = wre3_qpcr_data)
+summary(wre3_qpcr_snod.m1)
+
+# Description*Day effect:
+wre3_qpcr_snod <- allEffects(wre3_qpcr_snod.m1)
+print(wre3_qpcr_snod)
+
+# Create a data frame:
+df_wre3_qpcr_snod <- data.frame(wre3_qpcr_snod$`Description:Day`)
+
+# Plot:
+WRE3_QPCR_SA <- ggplot(data = df_wre3_qpcr_snod,
+       aes(x = Day, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.4)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.4), alpha = 0.2, linetype = "dashed") +
+  geom_point(aes(shape=Description), size = 5, position = position_dodge(width = 0.4)) +
+  scale_shape_manual(values = c(16,17)) +
+  scale_y_continuous(trans = "log10") + 
+  scale_color_manual(values=c('#999999', '#E69F00')) +
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Snodgrassella") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 12, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 8)) +
+  theme(legend.position = "none") +
+  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+
+# Statistical analysis:
+emmeans(wre3_qpcr_snod.m1, pairwise~Description|Day)
+```
+
+
+### RECOVERY RATES DATA:
+# Oral exposure - Hive recovery experiments:
+```{r Model}
+### Hive 8, October 2018
+df <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("Control", "0.1% Roundup"), 2),
+                 len=c(153, 96, 195, 252))
+head(df)
+
+df$group <- factor(df$group, levels = c("Control", "0.1% Roundup"))
+
+rec_fall_2018 <- ggplot(data = df, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 50, 100, 150, 200, 250, 300, 350)) +
+  ggtitle("Experiment 1, October 2018") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+
+### Hive 9, June 2019
+df.2 <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("Control", "0.1% Roundup"), 2),
+                 len=c(192, 159, 138, 171))
+head(df.2)
+
+df.2$group <- factor(df.2$group, levels = c("Control", "0.1% Roundup"))
+
+rec_jun_2019 <- ggplot(data = df.2, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 50, 100, 150, 200, 250, 300, 350)) +
+  ggtitle("Experiment 2, June 2019") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+
+### Hive 8, June 2019
+df.3 <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("Control", "0.1% Roundup"), 2),
+                 len=c(268, 258, 122, 132))
+head(df.3)
+
+df.3$group <- factor(df.3$group, levels = c("Control", "0.1% Roundup"))
+
+rec_jun2_2019 <- ggplot(data = df.3, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 60, 120, 180, 240, 300, 360, 420)) +
+  ggtitle("Experiment 3, June 2019") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+
+### Hive 8, July 2019
+df.4 <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("Control", "0.1% Roundup"), 2),
+                 len=c(94, 97, 259, 256))
+head(df.4)
+
+df.4$group <- factor(df.4$group, levels = c("Control", "0.1% Roundup"))
+
+rec_jul_2019 <- ggplot(data = df.4, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 50, 100, 150, 200, 250, 300, 350)) +
+  ggtitle("Experiment 4, July 2019") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+
+### Hive 8, July 2019
+df.5 <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("Control", "0.1% Roundup"), 2),
+                 len=c(64, 37, 376, 403))
+head(df.5)
+
+df.5$group <- factor(df.5$group, levels = c("Control", "0.1% Roundup"))
+
+rec_jul2_2019 <- ggplot(data = df.5, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 60, 120, 180, 240, 300, 360, 420)) +
+  ggtitle("Experiment 5, July 2019") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+
+### Validation, hive 9, july 2019
+df.6 <- data.frame(supp=rep(c("Recovered", "Non-recovered"), each=2),
+                 group=rep(c("White", "Pink"), 2),
+                 len=c(120, 117, 58, 59))
+head(df.6)
+
+df.6$group <- factor(df.6$group, levels = c("White", "Pink"))
+
+val_jul_2019 <- ggplot(data = df.6, aes(x = group, y = len, fill = supp)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual("len", values = c("Non-recovered" = "#CCCCCB", "Recovered" = "black")) +
+  scale_y_continuous("Bees recovered on Day 3", breaks = c(0, 30, 60, 90, 120, 150, 180)) +
+  ggtitle("Validation experiment") +
+  theme(plot.title = element_text(size = 12, face = "plain")) +
+  theme(legend.position = "bottom") +
+  theme(legend.title = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.y = element_text(size = 10))
+```
+
+
+# Plotting Figure 2 and Figure S3:
+```{r}
+### Figure 2:
+plot_grid(rec_fall_2018, WRE_TB, WRE_DADA2_SA, WRE_DADA2_GI, WRE_DADA2_BI, WRE_DADA2_F5, labels = "AUTO", nrow = 2)
+
+### Figure S3:
+plot_grid(rec_jun_2019, WRE2_QPCR_TB, WRE2_QPCR_SA, rec_jun2_2019, WRE3_QPCR_SA, rec_jul_2019, rec_jul2_2019, val_jul_2019, labels = "AUTO", nrow = 3)
+```

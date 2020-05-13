@@ -1,0 +1,455 @@
+---
+title: "Generalized_linear_mixed_models"
+author: "Erick Motta"
+date: "6/1/2019"
+output: html_document
+---
+
+##### Field experiment performed in site 2, Driftwood, TX, 2019 - Generalized linear mixed models
+
+# Load packages:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(lmerTest)
+library(interactions)
+library(car)
+library(effects)
+library(emmeans)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+library(gridExtra)
+```
+
+# For total bacteria:
+```{r}
+# Model
+out_hiv_abs_site2 <- read.table("tables/asv_tables/qiime2-DW-site2-2019-feature-table-absolute.txt", header = T)
+out_hiv_abs_site2$Bee <- factor(out_hiv_abs_site2$Bee)
+out_hiv_abs_site2$Description <- factor(out_hiv_abs_site2$Description)
+out_hiv_abs_site2$Hive <- factor(out_hiv_abs_site2$Hive)
+out_hiv_abs_site2$Week <- factor(out_hiv_abs_site2$Week)
+
+tb_abs_site2.m1 <- glmer(Total_bact ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(tb_abs_site2.m1)
+
+# anova
+Anova(tb_abs_site2.m1)
+
+# Description*Week effect
+tb_abs_site2 <- allEffects(tb_abs_site2.m1)
+print(tb_abs_site2)
+
+# Statistical analysis
+emmeans(tb_abs_site2.m1, pairwise~Description|Week)
+
+# Create a data frame
+df_tb_abs_site2 <- data.frame(tb_abs_site2$`Description:Week`)
+df_tb_abs_site2$Description <- factor(df_tb_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.001R-Water","0.1R-Syrup","0.1R-Water"))
+
+# Plot
+tb_abs_site2_2019 <- ggplot(data = df_tb_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("All bacteria") +
+  theme(plot.title = element_text(face = "plain", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Snodgrassella:
+```{r}
+# Model
+snod_abs_site2.m2 <- glmer(Snodgrassella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(snod_abs_site2.m2)
+
+# anova
+Anova(snod_abs_site2.m2)
+
+# Description*Week effect
+snod_abs_site2 <- allEffects(snod_abs_site2.m2)
+print(snod_abs_site2)
+
+# Statistical analysis
+emmeans(snod_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_snod_abs_site2 <- data.frame(snod_abs_site2$`Description:Week`)
+df_snod_abs_site2$Description <- factor(df_snod_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.001R-Water","0.1R-Syrup","0.1R-Water"))
+
+# Plot
+snod_abs_site2_2019 <- ggplot(data = df_snod_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_line(size = 1, position = position_dodge(width = 0.6), alpha = 0.2, linetype = "dashed") +
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Snodgrassella alvi") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10),
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Bifidobacterium:
+```{r}
+# Model
+bifido_abs_site2.m2 <- glmer(Bifidobacterium ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(bifido_abs_site2.m2)
+
+# anova
+Anova(bifido_abs_site2.m2)
+
+# Description*Week effect
+bifido_abs_site2 <- allEffects(bifido_abs_site2.m2)
+print(bifido_abs_site2)
+
+# Statistical analysis
+emmeans(bifido_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_bifido_abs_site2 <- data.frame(bifido_abs_site2$`Description:Week`)
+df_bifido_abs_site2$Description <- factor(df_bifido_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+bifido_abs_site2_2019 <- ggplot(data = df_bifido_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Bifidobacterium") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Gilliamella:
+```{r}
+# Model
+gill_abs_site2.m2 <- glmer(Gilliamella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(gill_abs_site2.m2)
+
+# anova
+Anova(gill_abs_site2.m2)
+
+# Description*Week effect
+gill_abs_site2 <- allEffects(gill_abs_site2.m2)
+print(gill_abs_site2)
+
+# Statistical analysis
+emmeans(gill_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_gill_abs_site2 <- data.frame(gill_abs_site2$`Description:Week`)
+df_gill_abs_site2$Description <- factor(df_gill_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+gill_abs_site2_2019 <- ggplot(data = df_gill_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Gilliamella") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Lactobacillus Firm4:
+```{r}
+# Model
+firm4_abs_site2.m2 <- glmer(Firm4 ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(firm4_abs_site2.m2)
+
+# anova
+Anova(firm4_abs_site2.m2)
+
+# Description*Week effect
+firm4_abs_site2 <- allEffects(firm4_abs_site2.m2)
+print(firm4_abs_site2)
+
+# Statistical analysis
+emmeans(firm4_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_firm4_abs_site2 <- data.frame(firm4_abs_site2$`Description:Week`)
+df_firm4_abs_site2$Description <- factor(df_firm4_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+firm4_abs_site2_2019 <- ggplot(data = df_firm4_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+ geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Lactobacillus Firm-4") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Lactobacillus Firm5:
+```{r}
+# Model
+firm5_abs_site2.m1 <- glmer(Firm5 ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(firm5_abs_site2.m1)
+
+# anova
+Anova(firm5_abs_site2.m1)
+
+# Description*Week effect
+firm5_abs_site2 <- allEffects(firm5_abs_site2.m1)
+print(firm5_abs_site2)
+
+# Statistical analysis
+emmeans(firm5_abs_site2.m1, pairwise~Description|Week)
+
+# Create a data frame
+df_firm5_abs_site2 <- data.frame(firm5_abs_site2$`Description:Week`)
+df_firm5_abs_site2$Description <- factor(df_firm5_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+firm5_abs_site2_2019 <- ggplot(data = df_firm5_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Lactobacillus Firm-5") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Other bacteria:
+```{r}
+# Model
+other_abs_site2.m2 <- glmer(Other_bact ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+summary(other_abs_site2.m2)
+
+# anova
+Anova(other_abs_site2.m2)
+
+# Description*Week effect
+other_abs_site2 <- allEffects(other_abs_site2.m2)
+print(other_abs_site2)
+
+# Statistical analysis
+emmeans(other_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_other_abs_site2 <- data.frame(other_abs_site2$`Description:Week`)
+df_other_abs_site2$Description <- factor(df_other_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+other_abs_site2_2019 <- ggplot(data = df_other_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  ggtitle("Other bacteria") +
+  theme_classic() +
+  theme(plot.title = element_text(face = "plain", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Bartonella:
+```{r}
+# Model
+bart_abs_site2.m1 <- glmer(Bartonella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+bar <- getME(bart_abs_site2.m1, c("theta", "fixef"))
+bart_abs_site2.m2 <- update(bart_abs_site2.m1, start = bar, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(bart_abs_site2.m2)
+
+# anova
+Anova(bart_abs_site2.m2)
+
+# Description*Week effect
+bart_abs_site2 <- allEffects(bart_abs_site2.m2)
+print(bart_abs_site2)
+
+# Statistical analysis
+emmeans(bart_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_bart_abs_site2 <- data.frame(bart_abs_site2$`Description:Week`)
+df_bart_abs_site2$Description <- factor(df_bart_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+bart_abs_site2_2019 <- ggplot(data = df_bart_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Bartonella") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Frischella:
+```{r}
+# Model
+fris_abs_site2.m1 <- glmer(Frischella ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+fri <- getME(fris_abs_site2.m1, c("theta", "fixef"))
+fris_abs_site2.m2 <- update(fris_abs_site2.m1, start = fri, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(fris_abs_site2.m2)
+
+# anova
+Anova(fris_abs_site2.m2)
+
+# Description*Week effect
+fris_abs_site2 <- allEffects(fris_abs_site2.m2)
+print(fris_abs_site2)
+
+# Statistical analysis
+emmeans(fris_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_fris_abs_site2 <- data.frame(fris_abs_site2$`Description:Week`)
+df_fris_abs_site2$Description <- factor(df_fris_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+fris_abs_site2_2019 <- ggplot(data = df_fris_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Frischella") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Enterobacteriaceae:
+```{r}
+# Model
+entero_abs_site2.m1 <- glmer(Enterobacteriaceae ~ Description*Week + (1 | Hive/Bee), family = poisson, data = out_hiv_abs_site2)
+entero <- getME(entero_abs_site2.m1, c("theta", "fixef"))
+entero_abs_site2.m2 <- update(entero_abs_site2.m1, start = entero, control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 2e5)))
+summary(entero_abs_site2.m2)
+
+# anova
+Anova(entero_abs_site2.m2)
+
+# Description*Week effect
+entero_abs_site2 <- allEffects(entero_abs_site2.m2)
+
+# Statistical analysis
+emmeans(entero_abs_site2.m2, pairwise~Description|Week)
+
+# Create a data frame
+df_entero_abs_site2 <- data.frame(entero_abs_site2$`Description:Week`)
+df_entero_abs_site2$Description <- factor(df_entero_abs_site2$Description, levels = c("Control","0.001R-Syrup","0.1R-Syrup","0.001R-Water","0.1R-Water"))
+
+# Plot
+entero_abs_site2_2019 <- ggplot(data = df_entero_abs_site2,
+       aes(x = Week, y = fit, group = Description, color = Description)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), size = 1, width = 0, position = position_dodge(width = 0.6)) + 
+  geom_point(size = 3, aes(shape = Description, fill = Description), position = position_dodge(width = 0.6)) +
+  scale_shape_manual(values = c(21,22,23,24,25)) +
+  scale_color_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_fill_manual(values=c('#999999', '#F5BE6C', '#7FABD3', '#E69F00', '#3573B9')) +
+  scale_y_continuous(trans = "log10") + 
+  annotation_logticks(base = 10, side = "l") +
+  theme_classic() +
+  ggtitle("Enterobacteriaceae") +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) +
+  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  theme(legend.position = "none")
+```
+
+# Plotting Figures 5B and S6
+``` {r}
+### Figure 5B:
+plot_grid(snod_abs_site2_2019, labels = "AUTO")
+
+### Figure S6:
+plot_grid(tb_abs_site2_2019, bifido_abs_site2_2019, firm4_abs_site2_2019, firm5_abs_site2_2019, gill_abs_site2_2019, bart_abs_site2_2019, fris_abs_site2_2019, other_abs_site2_2019, entero_abs_site2_2019, ncol = 3, labels = "AUTO")      
+
+```
