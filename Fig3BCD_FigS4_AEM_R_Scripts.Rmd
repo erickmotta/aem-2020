@@ -69,7 +69,7 @@ OH_TB_dada2 <- ggplot(data = df_oh_tb_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -108,7 +108,7 @@ OH_SA_dada2 <- ggplot(data = df_oh_snod_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -148,7 +148,7 @@ OH_BI_dada2 <- ggplot(data = df_oh_bifido_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -188,7 +188,7 @@ OH_F4_dada2 <- ggplot(data = df_oh_firm4_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -231,7 +231,7 @@ OH_mellis_dada2 <- ggplot(data = df_oh_mellis_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -274,7 +274,7 @@ OH_mellifer_dada2 <- ggplot(data = df_oh_mellifer_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -314,7 +314,7 @@ OH_F5_dada2 <- ggplot(data = df_oh_firm5_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -353,7 +353,7 @@ OH_Lapis_dada2 <- ggplot(data = df_oh_lapis_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -393,7 +393,7 @@ OH_Lhels_dada2 <- ggplot(data = df_oh_Lhels_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -462,7 +462,7 @@ OH_GA_dada2 <- ggplot(data = df_oh_gill_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -506,7 +506,7 @@ OH_BA_dada2 <- ggplot(data = df_oh_bart_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -551,7 +551,7 @@ OH_FP_dada2 <- ggplot(data = df_oh_fris_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -594,7 +594,7 @@ OH_CO_dada2 <- ggplot(data = df_oh_comens_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -636,7 +636,7 @@ OH_FR_dada2 <- ggplot(data = df_oh_fruct_dada2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 
@@ -679,7 +679,7 @@ OH_LK <- ggplot(data = df_kunkeei,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote(~Log[10]~ '16S rDNA copies')) +
+  ylab(bquote('16S rDNA copies')) +
   theme(legend.position = "none")
 ```
 

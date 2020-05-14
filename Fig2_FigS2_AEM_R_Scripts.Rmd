@@ -66,7 +66,7 @@ WRE_TB <- ggplot(data = df_wre_dada2_total_bact,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre_dada2_total_bact.m1, pairwise~Description|Day)
@@ -103,7 +103,7 @@ WRE_DADA2_SA <- ggplot(data = df_wre_dada2_snod,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre_dada2_snod.m1, pairwise~Description|Day)
@@ -140,7 +140,7 @@ WRE_DADA2_GI <- ggplot(data = df_wre_dada2_gill,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre_dada2_gill.m1, pairwise~Description|Day)
@@ -177,7 +177,7 @@ WRE_DADA2_BI <- ggplot(data = df_wre_dada2_bifido,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre_dada2_bifido.m1, pairwise~Description|Day)
@@ -214,7 +214,7 @@ WRE_DADA2_F5 <- ggplot(data = df_wre_dada2_firm5,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre_dada2_firm5.m1, pairwise~Description|Day)
@@ -369,7 +369,7 @@ WRE2_QPCR_SA <- ggplot(data = df_wre2_qpcr_snod,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 8)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre2_qpcr_snod.m1, pairwise~Description|Day)
@@ -406,7 +406,7 @@ WRE2_QPCR_TB <- ggplot(data = df_wre2_qpcr_total,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 8)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre2_qpcr_total.m1, pairwise~Description|Day)
@@ -450,7 +450,7 @@ WRE3_QPCR_SA <- ggplot(data = df_wre3_qpcr_snod,
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 8)) +
   theme(legend.position = "none") +
-  ylab(bquote(~Log[10]~ '16S rDNA copies (qPCR)'))
+  ylab(bquote('16S rDNA copies'))
 
 # Statistical analysis:
 emmeans(wre3_qpcr_snod.m1, pairwise~Description|Day)
