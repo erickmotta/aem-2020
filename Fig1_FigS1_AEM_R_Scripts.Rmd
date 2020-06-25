@@ -40,7 +40,7 @@ BOXPLOT_new_qiime2_TB <- ggplot(data = df_qiime2_data, aes(x = Description, y = 
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote('16S rDNA copies'))
+  ylab(bquote('16S rRNA gene copies'))
 
 # Statistical analyses:
 kruskal.test(Total_bact ~ Description, data = qiime2_data)
@@ -62,7 +62,7 @@ BOXPLOT_snod_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = Sn
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote('16S rDNA copies'))
+  ylab(bquote('16S rRNA gene copies'))
 
 # Statistical analyses:
 kruskal.test(Snodgrassella ~ Description, data = qiime2_data)
@@ -84,7 +84,7 @@ BOXPLOT_gill_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = Gi
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote('16S rDNA copies'))
+  ylab(bquote('16S rRNA gene copies'))
 
 # Statistical analyses:
 kruskal.test(Gilliamella ~ Description, data = qiime2_data)
@@ -106,7 +106,7 @@ BOXPLOT_bifido_qiime2 <- ggplot(data = df_qiime2_data, aes(x = Description, y = 
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote('16S rDNA copies'))
+  ylab(bquote('16S rRNA gene copies'))
 
 # Statistical analyses:
 kruskal.test(Gilliamella ~ Description, data = qiime2_data)
@@ -149,7 +149,7 @@ BOXPLOT_NEW_SA_QPCR <- ggplot(data = df_qiime2_data, aes(x = Description, y = Sn
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
-  ylab(bquote('16S rDNA copies'))
+  ylab(bquote('16S rRNA gene copies'))
 
 # Statistical analyses:
 kruskal.test(Snod_qpcr ~ Description, data = new_data_rel)
@@ -198,17 +198,11 @@ BOXPLOT_NEW_F5_REL <- ggplot(data = df_qiime2_data_rel, aes(x = Description, y =
   annotation_logticks(base = 10, side = "l") +
   ggtitle("Lactobacillus Firm-5") +
    theme_classic() +
-  theme(
-    plot.title = element_text(face = "italic", size = 10, hjust = 0.5)
-  ) +
-  theme(
-    axis.text.x = element_text(color = "black", size = 10), 
-    axis.text.y = element_text(color = "black", size = 10)
-    ) +
-  theme(
-    axis.title.x = element_blank(),
-    axis.title.y = element_text(size = 10)
-    ) +
+  theme(plot.title = element_text(face = "italic", size = 10, hjust = 0.5)) +
+  theme(axis.text.x = element_text(color = "black", size = 10), 
+        axis.text.y = element_text(color = "black", size = 10)) +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 10)) +
   theme(legend.position = "none") +
   ylab(bquote('Relative abundance'))
 

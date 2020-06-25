@@ -9,7 +9,6 @@ library(ggplot2)
 library(cowplot)
 ```
 
-# Temperature:
 ```{r Model}
 dw_climate <- read.table("tables/climate_data_dw.txt", header = T)
 

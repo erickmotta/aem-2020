@@ -40,7 +40,7 @@ BOXPLOT_top_exp_lab <- ggplot(data = df_top_exp_lab, aes(x = Description, y = Sn
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) +
@@ -492,7 +492,7 @@ BOXPLOT_top_exp_hive <- ggplot(data = df_top_exp_hive, aes(x = Description, y = 
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank()) +

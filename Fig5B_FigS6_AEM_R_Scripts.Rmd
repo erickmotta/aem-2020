@@ -65,7 +65,7 @@ tb_abs_site2_2019 <- ggplot(data = df_tb_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -107,7 +107,7 @@ snod_abs_site2_2019 <- ggplot(data = df_snod_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -148,7 +148,7 @@ bifido_abs_site2_2019 <- ggplot(data = df_bifido_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -189,7 +189,7 @@ gill_abs_site2_2019 <- ggplot(data = df_gill_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -230,7 +230,7 @@ firm4_abs_site2_2019 <- ggplot(data = df_firm4_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -271,7 +271,7 @@ firm5_abs_site2_2019 <- ggplot(data = df_firm5_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -312,7 +312,7 @@ other_abs_site2_2019 <- ggplot(data = df_other_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -355,7 +355,7 @@ bart_abs_site2_2019 <- ggplot(data = df_bart_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -398,7 +398,7 @@ fris_abs_site2_2019 <- ggplot(data = df_fris_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -440,7 +440,7 @@ entero_abs_site2_2019 <- ggplot(data = df_entero_abs_site2,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 

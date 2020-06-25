@@ -63,7 +63,7 @@ OH_site1_TB_dada2 <- ggplot(data = df_oh_site_dada2_tb,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -104,7 +104,7 @@ OH_site1_snod_dada2 <- ggplot(data = df_oh_site_dada2_snod,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -145,7 +145,7 @@ OH_site1_bifido_dada2 <- ggplot(data = df_oh_site_dada2_bifido,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -186,7 +186,7 @@ OH_site1_firm4_dada2 <- ggplot(data = df_oh_site_dada2_firm4,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -227,7 +227,7 @@ OH_site1_firm5_dada2 <- ggplot(data = df_oh_site_dada2_firm5,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -268,7 +268,7 @@ OH_site1_gill_dada2 <- ggplot(data = df_oh_site_dada2_gill,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -311,7 +311,7 @@ OH_site1_bart_dada2 <- ggplot(data = df_oh_site_dada2_bart,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -354,7 +354,7 @@ OH_site1_fris_dada2 <- ggplot(data = df_oh_site_dada2_fris,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -397,7 +397,7 @@ OH_site1_kunkeei_dada2 <- ggplot(data = df_oh_site_dada2_kunkeei,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
@@ -438,7 +438,7 @@ OH_site1_other_dada2 <- ggplot(data = df_oh_site_dada2_other,
         axis.text.y = element_text(color = "black", size = 10)) +
   theme(axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10)) +
-  ylab(bquote('16S rDNA copies')) +
+  ylab(bquote('16S rRNA gene copies')) +
   theme(legend.position = "none")
 ```
 
